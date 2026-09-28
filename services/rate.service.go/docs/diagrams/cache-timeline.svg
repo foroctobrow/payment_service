@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .key { fill: #FFF0D4; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="380" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Сколько живёт курс в кэше, пока биржа отвечает и после сбоя</text>
+  <rect x="100" y="225" width="880" height="25" class="key"/>
+  <rect x="980" y="100" width="110" height="150" class="store"/>
+  <line x1="100" y1="225" x2="1090" y2="225" stroke="#C25E00" stroke-width="1" stroke-dasharray="4 4"/>
+  <path d="M100 100 L375 225 L375 100 L650 225 L650 100 L925 225 L980 250" fill="none" stroke="#2F6FE0" stroke-width="2.2"/>
+  <line x1="980" y1="250" x2="1090" y2="250" stroke="#6B6B6B" stroke-width="2.2" stroke-dasharray="6 5"/>
+  <path d="M94 72 L106 72 L100 82 Z" fill="#F6821F"/>
+  <path d="M369 72 L381 72 L375 82 Z" fill="#F6821F"/>
+  <path d="M644 72 L656 72 L650 82 Z" fill="#F6821F"/>
+  <text x="112" y="80" class="muted">прогрев</text>
+  <path d="M919 72 L931 72 L925 82 Z" fill="none" stroke="#F6821F" stroke-width="1.6"/>
+  <text x="913" y="80" class="muted" text-anchor="end">биржа не ответила</text>
+  <line x1="100" y1="250" x2="1104" y2="250" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="100" y1="250" x2="100" y2="92" stroke="#1A1A1A" stroke-width="1.6"/>
+  <text x="90" y="254" class="muted" text-anchor="end">0 с</text>
+  <text x="90" y="229" class="muted" text-anchor="end">5 с</text>
+  <text x="90" y="104" class="muted" text-anchor="end">30 с</text>
+  <text x="90" y="124" class="muted" text-anchor="end">TTL</text>
+  <line x1="100" y1="250" x2="100" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="100" y="272" class="muted" text-anchor="middle">0 с</text>
+  <line x1="210" y1="250" x2="210" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="210" y="272" class="muted" text-anchor="middle">10 с</text>
+  <line x1="320" y1="250" x2="320" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="320" y="272" class="muted" text-anchor="middle">20 с</text>
+  <line x1="430" y1="250" x2="430" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="430" y="272" class="muted" text-anchor="middle">30 с</text>
+  <line x1="540" y1="250" x2="540" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="540" y="272" class="muted" text-anchor="middle">40 с</text>
+  <line x1="650" y1="250" x2="650" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="650" y="272" class="muted" text-anchor="middle">50 с</text>
+  <line x1="760" y1="250" x2="760" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="760" y="272" class="muted" text-anchor="middle">60 с</text>
+  <line x1="870" y1="250" x2="870" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="870" y="272" class="muted" text-anchor="middle">70 с</text>
+  <line x1="980" y1="250" x2="980" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="980" y="272" class="muted" text-anchor="middle">80 с</text>
+  <line x1="1090" y1="250" x2="1090" y2="256" stroke="#1A1A1A" stroke-width="1.2"/>
+  <text x="1090" y="272" class="muted" text-anchor="middle">90 с</text>
+  <rect x="100" y="300" width="16" height="16" class="key"/>
+  <text x="124" y="313" class="text">TTL меньше 5 с: запрос отдаёт курс и обновляет его в фоне</text>
+  <rect x="100" y="328" width="16" height="16" class="store"/>
+  <text x="124" y="341" class="text">ключа нет: запрос идёт на биржу, при ошибке берёт current_rate из PostgreSQL, если он не старше 15 мин, иначе RATE_STALE</text>
+</svg>

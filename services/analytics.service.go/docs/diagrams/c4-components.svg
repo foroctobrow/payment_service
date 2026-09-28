@@ -1,0 +1,128 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 856" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .svc   { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 2.5; }
+      .store { fill: #F1F1F1; }
+      .body  { font-size: 12px; fill: #1A1A1A; }
+    </style>
+  </defs>
+  <rect width="1200" height="856" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты analytics.service.go</text>
+
+  <g transform="translate(40,100)">
+    <rect width="170" height="64" rx="4" class="svc"/>
+    <text x="14" y="27" class="name">core</text>
+    <text x="14" y="48" class="muted">меняет статус сделки</text>
+  </g>
+  <g transform="translate(40,174)">
+    <rect width="170" height="64" rx="4" class="svc"/>
+    <text x="14" y="27" class="name">core admin-api</text>
+    <text x="14" y="48" class="muted">раздел /analytics</text>
+  </g>
+  <g transform="translate(40,302)">
+    <rect width="170" height="56" rx="4" class="store"/>
+    <text x="14" y="24" class="name" style="fill:#444">ANALYTICS_DLQ</text>
+    <text x="14" y="44" class="muted">NATS JetStream, 7 дней</text>
+  </g>
+
+  <rect x="440" y="80" width="720" height="636" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="460" y="106" class="name">analytics.service.go</text>
+  <text x="630" y="106" class="muted">[Go-сервис]</text>
+
+  <line x1="210" y1="132" x2="452" y2="132" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="118" class="text" fill="#1A1A1A" text-anchor="middle">публикует смену статуса</text>
+  <text x="325" y="152" class="mono" fill="#6B6B6B" text-anchor="middle">[JetStream DEAL_EVENTS]</text>
+
+  <line x1="210" y1="206" x2="452" y2="206" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="192" class="text" fill="#1A1A1A" text-anchor="middle">запрашивает отчёты</text>
+  <text x="325" y="226" class="mono" fill="#6B6B6B" text-anchor="middle">[CQRS Analytics.*]</text>
+
+  <path d="M500 220 V330 H218" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="330" y="318" class="text" fill="#1A1A1A" text-anchor="middle">после 5 повторов</text>
+  <text x="330" y="350" class="mono" fill="#6B6B6B" text-anchor="middle">[analytics.dlq.deal_events]</text>
+
+  <g transform="translate(460,120)">
+    <rect width="220" height="100" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">controller/nats_rpc/v1</text>
+    <text x="12" y="40" class="muted">[NATS-контроллер]</text>
+    <text x="12" y="62" class="body">события DEAL_EVENTS</text>
+    <text x="12" y="80" class="body">и 5 запросов Analytics.*</text>
+  </g>
+  <g transform="translate(460,464)">
+    <rect width="220" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">controller/restapi</text>
+    <text x="12" y="40" class="muted">[HTTP-контроллер]</text>
+    <text x="12" y="60" class="body">CSV на :8093</text>
+  </g>
+
+  <line x1="680" y1="156" x2="760" y2="156" stroke="#1A1A1A" stroke-width="1.6"/>
+  <text x="720" y="144" class="text" fill="#1A1A1A" text-anchor="middle">вызывает</text>
+  <line x1="760" y1="156" x2="760" y2="414" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="760" y1="156" x2="812" y2="156" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="760" y1="242" x2="812" y2="242" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="760" y1="328" x2="812" y2="328" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="760" y1="414" x2="812" y2="414" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <line x1="680" y1="500" x2="812" y2="500" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="746" y="488" class="text" fill="#1A1A1A" text-anchor="middle">вызывает</text>
+
+  <g transform="translate(820,120)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/projector</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="body">снимок сделки в факт, до 600 в секунду</text>
+  </g>
+  <g transform="translate(820,206)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/summary</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="body">сводка по терминалам и исполнителям</text>
+  </g>
+  <g transform="translate(820,292)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/dashboard</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="body">KPI и тренд, считает через summary</text>
+  </g>
+  <g transform="translate(820,378)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/time_series, distribution</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="body">временные ряды и гистограмма сумм</text>
+  </g>
+  <g transform="translate(820,464)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/export</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="body">CSV до 10 000 строк</text>
+  </g>
+
+  <line x1="970" y1="536" x2="970" y2="608" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="982" y="556" class="text" fill="#1A1A1A">usecase-пакеты</text>
+  <text x="982" y="574" class="text" fill="#1A1A1A">читают и пишут</text>
+  <text x="982" y="594" class="mono" fill="#6B6B6B">[repo.I*Repo]</text>
+
+  <g transform="translate(820,616)">
+    <rect width="300" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">repo/persistent</text>
+    <text x="12" y="40" class="muted">[репозиторий]</text>
+    <text x="12" y="60" class="body">Bun: upsert фактов, GROUPING SETS</text>
+  </g>
+
+  <line x1="970" y1="688" x2="970" y2="768" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="958" y="738" class="text" fill="#1A1A1A" text-anchor="end">хранит факты</text>
+  <text x="958" y="756" class="mono" fill="#6B6B6B" text-anchor="end">[SQL]</text>
+
+  <g transform="translate(890,776)">
+    <rect width="160" height="56" rx="4" class="store"/>
+    <text x="14" y="24" class="name" style="fill:#444">PostgreSQL</text>
+    <text x="14" y="44" class="muted">analytics_db</text>
+  </g>
+</svg>

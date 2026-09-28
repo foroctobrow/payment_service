@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 790" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="790" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Один Query: от вызова до ответа</text>
+
+  <rect x="40" y="72" width="1120" height="300" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="64" y="104" class="name">core.service.go</text>
+  <text x="206" y="104" class="muted">вызывающий сервис</text>
+
+  <g class="step" transform="translate(76,140)"><circle r="11"/><text>1</text></g>
+  <text x="96" y="145" class="label">Вызов</text>
+  <rect x="64" y="158" width="340" height="80" class="plate"/>
+  <text x="78" y="182" class="mono" fill="#1A1A1A">sc.Query(ctx,</text>
+  <text x="78" y="202" class="mono" fill="#1A1A1A">  "Platform.Currency.GetByCode",</text>
+  <text x="78" y="222" class="mono" fill="#1A1A1A">  {"code": "RUB"}, &amp;out)</text>
+
+  <g class="step" transform="translate(444,140)"><circle r="11"/><text>2</text></g>
+  <text x="464" y="145" class="label">Есть ли такой обработчик</text>
+  <rect x="432" y="158" width="330" height="80" class="plate"/>
+  <text x="446" y="182" class="text" fill="#1A1A1A">ищем узел platform-service,</text>
+  <text x="446" y="202" class="text" fill="#1A1A1A">объявивший GetByCode;</text>
+  <text x="446" y="222" class="text" fill="#1A1A1A">нет такого — ошибка сразу</text>
+
+  <g class="step" transform="translate(802,140)"><circle r="11"/><text>3</text></g>
+  <text x="822" y="145" class="label">Регистрируем ожидание</text>
+  <rect x="790" y="158" width="346" height="80" class="plate"/>
+  <text x="804" y="182" class="mono" fill="#1A1A1A">requestId</text>
+  <text x="879" y="182" class="text" fill="#1A1A1A">→ канал ответа</text>
+  <text x="804" y="202" class="text" fill="#1A1A1A">и таймер RequestTimeout,</text>
+  <text x="804" y="222" class="text" fill="#1A1A1A">по умолчанию 30 с</text>
+
+  <g class="step" transform="translate(802,264)"><circle r="11"/><text>6</text></g>
+  <text x="822" y="269" class="label">Ответ находит своё ожидание</text>
+  <rect x="790" y="282" width="346" height="80" class="key"/>
+  <text x="804" y="306" class="mono" fill="#C25E00">Complete(requestId)</text>
+  <text x="804" y="328" class="text" fill="#C25E00">подписка responses, мимо очереди воркеров;</text>
+  <text x="804" y="350" class="text" fill="#C25E00">Query возвращает данные в out</text>
+
+  <line x1="240" y1="238" x2="240" y2="452" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(262,398)"><circle r="11"/><text>4</text></g>
+  <text x="282" y="403" class="mono" fill="#1A1A1A">$CQRS.pay.platform-service.Platform.Currency.GetByCode</text>
+
+  <line x1="860" y1="452" x2="860" y2="370" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="876" y="438" class="mono" fill="#1A1A1A">$CQRS.pay.&lt;nodeId&gt;.responses</text>
+
+  <rect x="40" y="460" width="1120" height="40" rx="4" fill="#1A1A1A"/>
+  <text x="60" y="485" class="mono" fill="#FFFFFF" style="fill:#FFFFFF">NATS</text>
+  <text x="1140" y="485" class="text" fill="#FFFFFF" text-anchor="end">обычный pub/sub, без JetStream</text>
+
+
+  <rect x="40" y="530" width="1120" height="240" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="64" y="562" class="name">platform-service</text>
+  <text x="258" y="562" class="muted">queue group platform-service: сообщение получает один экземпляр</text>
+
+  <rect x="64" y="590" width="836" height="160" rx="4" fill="#FFFFFF" stroke="#F6821F" stroke-width="1.5"/>
+  <text x="84" y="616" class="label">Экземпляр A</text>
+  <g class="step" transform="translate(96,650)"><circle r="11"/><text>5</text></g>
+  <text x="116" y="655" class="label">Обработчик в пуле воркеров</text>
+  <rect x="84" y="668" width="560" height="34" class="plate"/>
+  <text x="98" y="690" class="mono" fill="#1A1A1A">WithQueryTracing → WithQueryLogging → handler</text>
+  <text x="84" y="730" class="text" fill="#1A1A1A">ответ с тем же requestId уходит на subject узла, который спросил</text>
+
+  <rect x="924" y="590" width="212" height="160" rx="4" fill="#FFFFFF" stroke="#C8C8C8" stroke-width="1.5"/>
+  <text x="944" y="616" class="label" style="fill:#6B6B6B">Экземпляр B</text>
+  <text x="944" y="646" class="muted">в той же группе,</text>
+  <text x="944" y="664" class="muted">это сообщение</text>
+  <text x="944" y="682" class="muted">не получил</text>
+
+  <line x1="240" y1="500" x2="240" y2="582" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="860" y1="590" x2="860" y2="508" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+</svg>

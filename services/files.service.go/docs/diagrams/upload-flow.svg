@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 730" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#9A1FC0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .card  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1.5; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="730" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Путь файла к спору</text>
+
+  <g transform="translate(40,80)">
+    <rect width="170" height="90" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="50" class="label">Мерчант</text>
+    <text x="14" y="72" class="muted">скриншот оплаты</text>
+  </g>
+  <line x1="210" y1="125" x2="242" y2="125" stroke="#9A1FC0" stroke-width="1.6" marker-end="url(#a-purple)"/>
+
+  <g transform="translate(250,80)">
+    <rect width="220" height="90" rx="4" class="card"/>
+    <text x="14" y="28" class="name">core merchant-api</text>
+    <text x="14" y="54" class="mono" fill="#9A1FC0" font-size="12">POST /deals/:id/disputes</text>
+    <text x="14" y="74" class="muted">открывает спор</text>
+  </g>
+  <line x1="470" y1="112" x2="572" y2="112" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="580" y1="142" x2="478" y2="142" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="580" y="70" width="580" height="630" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="1140" y="94" class="muted" text-anchor="end">files.service.go</text>
+
+  <g class="step" transform="translate(606,104)"><circle r="11"/><text>1</text></g>
+  <text x="626" y="109" class="label">Принимаем файл</text>
+  <rect x="600" y="122" width="330" height="70" class="plate"/>
+  <text x="612" y="144" class="mono" fill="#1A1A1A">POST /v1/upload</text>
+  <text x="612" y="164" class="mono" fill="#1A1A1A">X-Service-Token</text>
+  <text x="612" y="184" class="mono" fill="#1A1A1A">file, deal_id, uploaded_by_id</text>
+
+  <g class="step" transform="translate(606,222)"><circle r="11"/><text>2</text></g>
+  <text x="626" y="227" class="label">Проверяем размер и тип по содержимому</text>
+  <rect x="600" y="240" width="330" height="52" class="plate"/>
+  <text x="612" y="262" class="text" fill="#1A1A1A">до 10 МиБ; PDF, PNG, JPEG или WebP</text>
+  <text x="612" y="282" class="text" fill="#1A1A1A">SHA-256 и превью 384×216</text>
+
+  <g class="step" transform="translate(606,322)"><circle r="11"/><text>3</text></g>
+  <text x="626" y="327" class="label">Кладём объект в бакет</text>
+  <rect x="600" y="340" width="330" height="34" class="plate"/>
+  <text x="612" y="362" class="mono" fill="#1A1A1A">PutObject key=&lt;uuid&gt;</text>
+  <line x1="930" y1="357" x2="972" y2="357" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="980" y="328" width="160" height="60" rx="4" class="store"/>
+  <text x="994" y="354" class="mono" fill="#444">S3 / RustFS</text>
+  <text x="994" y="374" class="muted">S3_BUCKET</text>
+
+  <g class="step" transform="translate(606,404)"><circle r="11"/><text>4</text></g>
+  <text x="626" y="409" class="label">Пишем строку, если файлов меньше 5</text>
+  <rect x="600" y="422" width="330" height="72" class="key"/>
+  <text x="612" y="444" class="mono" fill="#C25E00">lock(deal_id), COUNT &lt; 5</text>
+  <text x="612" y="464" class="mono" fill="#C25E00">INSERT → 201 {file_key}</text>
+  <text x="612" y="484" class="text" fill="#1A1A1A">иначе 422, объект удаляется</text>
+  <line x1="930" y1="448" x2="972" y2="448" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="980" y="418" width="160" height="60" rx="4" class="store"/>
+  <text x="994" y="442" class="mono" fill="#444">payments.</text>
+  <text x="994" y="462" class="mono" fill="#444">attachments</text>
+
+  <g class="step" transform="translate(606,524)"><circle r="11"/><text>5</text></g>
+  <text x="626" y="529" class="label">Подтверждаем после открытия спора</text>
+  <rect x="600" y="542" width="330" height="34" class="plate"/>
+  <text x="612" y="564" class="mono" fill="#1A1A1A">Files.Confirm → confirmed_at</text>
+  <path d="M360 170 V559 H572" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(606,606)"><circle r="11"/><text>6</text></g>
+  <text x="626" y="611" class="label">Выдаём ссылку на 15 минут</text>
+  <rect x="600" y="624" width="330" height="52" class="plate"/>
+  <text x="612" y="646" class="mono" fill="#1A1A1A">Files.GetURL</text>
+  <text x="612" y="666" class="mono" fill="#1A1A1A">presigned GET</text>
+
+  <g transform="translate(250,602)">
+    <rect width="220" height="80" rx="4" class="card"/>
+    <text x="14" y="28" class="name">telegram</text>
+    <text x="14" y="52" class="text" fill="#1A1A1A">споры провайдерам</text>
+  </g>
+  <line x1="470" y1="632" x2="572" y2="632" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="580" y1="662" x2="478" y2="662" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g transform="translate(40,602)">
+    <rect width="170" height="80" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="54" class="label">Провайдер</text>
+  </g>
+  <line x1="250" y1="642" x2="218" y2="642" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+</svg>

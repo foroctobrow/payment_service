@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1740 780" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 13px; fill: #1A1A1A; }
+      .verb  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .svc   { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .store { fill: #F1F1F1; }
+      .ext   { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="1740" height="780" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты core.service.go</text>
+
+  <rect x="40" y="130" width="150" height="64" class="ext"/>
+  <text x="52" y="156" class="svc">trader-service</text>
+  <text x="52" y="176" class="svc">telegram-service</text>
+  <rect x="40" y="236" width="150" height="52" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+  <text x="52" y="267" class="text">Мерчант, виджет</text>
+  <rect x="40" y="296" width="150" height="52" class="ext"/>
+  <text x="52" y="327" class="text">Провайдер</text>
+  <rect x="40" y="390" width="150" height="64" class="ext"/>
+  <text x="52" y="418" class="svc">admin.service</text>
+  <text x="52" y="438" class="svc">.nuxt</text>
+
+  <line x1="190" y1="162" x2="352" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="204" y="152" class="verb">шлёт команды</text>
+  <text x="204" y="180" class="muted">[CQRS]</text>
+  <line x1="190" y1="262" x2="352" y2="262" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="204" y="252" class="verb">создаёт сделку</text>
+  <text x="204" y="282" class="muted">[HTTP, HMAC]</text>
+  <line x1="190" y1="322" x2="352" y2="322" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="204" y="312" class="verb" fill="#2F6FE0">шлёт webhook</text>
+  <text x="204" y="340" class="muted">[HTTP]</text>
+  <line x1="190" y1="422" x2="352" y2="422" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="204" y="412" class="verb">управляет</text>
+  <text x="204" y="440" class="muted">[HTTP, JWT]</text>
+
+  <rect x="330" y="80" width="1045" height="560" rx="6" fill="none" stroke="#F6821F" stroke-width="2.5" stroke-dasharray="8 6"/>
+  <text x="350" y="106" class="name">core.service.go</text>
+  <text x="480" y="106" class="muted">[Go-сервис, три бинарника]</text>
+
+  <rect x="360" y="120" width="220" height="84" class="comp"/>
+  <text x="372" y="146" class="name">delivery/cqrs</text>
+  <text x="372" y="166" class="muted">[NATS-контроллер]</text>
+  <text x="372" y="188" class="text">команды трейдера и Telegram</text>
+
+  <rect x="360" y="250" width="220" height="84" class="comp"/>
+  <text x="372" y="276" class="name">delivery/http/merchant</text>
+  <text x="372" y="296" class="muted">[HTTP-контроллер]</text>
+  <text x="372" y="318" class="text">сделки, виджет, webhook</text>
+
+  <rect x="360" y="380" width="220" height="84" class="comp"/>
+  <text x="372" y="406" class="name">delivery/http/admin</text>
+  <text x="372" y="426" class="muted">[HTTP-контроллер]</text>
+  <text x="372" y="448" class="text">API админки, Casbin, пауза TTL</text>
+
+  <rect x="360" y="510" width="220" height="84" class="comp"/>
+  <text x="372" y="536" class="name">infrastructure/storage</text>
+  <text x="372" y="556" class="muted">[репозиторий]</text>
+  <text x="372" y="578" class="text">pgx, sqlc, advisory lock</text>
+
+  <line x1="580" y1="162" x2="692" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="592" y="152" class="verb">сигналит</text>
+  <text x="592" y="180" class="muted">[Temporal]</text>
+  <line x1="580" y1="292" x2="692" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="592" y="282" class="verb">вызывает</text>
+  <text x="592" y="310" class="muted">[Go]</text>
+  <line x1="580" y1="422" x2="692" y2="422" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="592" y="412" class="verb">меняет</text>
+  <text x="592" y="440" class="muted">[Go]</text>
+  <line x1="700" y1="552" x2="588" y2="552" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="616" y="542" class="verb">хранит</text>
+  <text x="616" y="570" class="muted">[Go]</text>
+
+  <rect x="700" y="120" width="290" height="84" class="comp"/>
+  <text x="712" y="146" class="name">application/payments/deal/saga</text>
+  <text x="712" y="166" class="muted">[Temporal-воркфлоу]</text>
+  <text x="712" y="188" class="text">ожидание оплаты, таймер спора</text>
+
+  <rect x="700" y="250" width="290" height="84" class="comp"/>
+  <text x="712" y="276" class="name">application/payments</text>
+  <text x="712" y="296" class="muted">[usecase]</text>
+  <text x="712" y="318" class="text">команды сделки и спора, sweeper</text>
+
+  <rect x="700" y="380" width="290" height="84" class="comp"/>
+  <text x="712" y="406" class="name">application/routing</text>
+  <text x="712" y="426" class="muted">[usecase]</text>
+  <text x="712" y="448" class="text">группы трафика, выбор исполнителя</text>
+
+  <rect x="700" y="510" width="290" height="84" class="comp"/>
+  <text x="712" y="536" class="name">application/providers</text>
+  <text x="712" y="556" class="muted">[usecase]</text>
+  <text x="712" y="578" class="text">адаптеры провайдеров, реквизит</text>
+
+  <line x1="740" y1="204" x2="740" y2="242" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="752" y="222" class="verb">запускает активности</text>
+  <text x="752" y="238" class="muted">[Temporal]</text>
+  <line x1="740" y1="334" x2="740" y2="372" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="752" y="352" class="verb">выбирает исполнителя</text>
+  <text x="752" y="368" class="muted">[Go]</text>
+  <line x1="740" y1="464" x2="740" y2="502" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="752" y="482" class="verb">получает реквизит</text>
+  <text x="752" y="498" class="muted">[Go]</text>
+
+  <rect x="1070" y="250" width="290" height="84" class="comp"/>
+  <text x="1082" y="276" class="name">infrastructure/services/events</text>
+  <text x="1082" y="296" class="muted">[JetStream-публикатор]</text>
+  <text x="1082" y="318" class="text">DealEvent с Nats-Msg-Id</text>
+
+  <rect x="1070" y="400" width="290" height="84" class="comp"/>
+  <text x="1082" y="426" class="name">infrastructure/services/accounting</text>
+  <text x="1082" y="446" class="muted">[CQRS-клиент]</text>
+  <text x="1082" y="468" class="text">леджер, outbox-диспетчер</text>
+
+  <line x1="990" y1="292" x2="1062" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="998" y="282" class="verb">шлёт</text>
+  <text x="998" y="310" class="muted">[Go]</text>
+  <path d="M960 334 V356 H1110 V392" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1122" y="384" class="verb">проводит</text>
+  <text x="1186" y="384" class="muted">[Go]</text>
+
+  <rect x="1500" y="130" width="210" height="64" class="store"/>
+  <text x="1516" y="158" class="text">Temporal</text>
+  <text x="1516" y="178" class="muted">namespace payments-core</text>
+  <line x1="990" y1="162" x2="1492" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1004" y="152" class="verb">работает в</text>
+  <text x="1004" y="180" class="muted">[gRPC]</text>
+
+  <rect x="1500" y="266" width="210" height="52" class="store"/>
+  <text x="1516" y="297" class="text">NATS JetStream</text>
+  <line x1="1360" y1="292" x2="1492" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1390" y="282" class="verb">публикует</text>
+  <text x="1390" y="310" class="muted">[DEAL_EVENTS]</text>
+
+  <rect x="1500" y="416" width="210" height="52" class="ext"/>
+  <text x="1516" y="447" class="svc">accounting-service</text>
+  <line x1="1360" y1="442" x2="1492" y2="442" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1390" y="432" class="verb">вызывает</text>
+  <text x="1390" y="460" class="muted">[CQRS]</text>
+
+  <rect x="1500" y="520" width="210" height="64" class="ext"/>
+  <text x="1516" y="547" class="text">Провайдер (API)</text>
+  <text x="1516" y="567" class="svc">trader-service</text>
+  <line x1="990" y1="552" x2="1492" y2="552" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1004" y="542" class="verb">запрашивает реквизит</text>
+  <text x="1004" y="570" class="muted">[HTTP через bridgepay, CQRS через manual]</text>
+
+  <rect x="360" y="690" width="220" height="52" class="store"/>
+  <text x="376" y="721" class="text">PostgreSQL</text>
+  <line x1="470" y1="594" x2="470" y2="682" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="482" y="622" class="verb">читает и пишет</text>
+  <text x="482" y="672" class="muted">[SQL]</text>
+</svg>

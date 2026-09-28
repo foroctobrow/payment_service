@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-orange" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#F6821F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="750" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Сделка внутри core: запрос, ожидание, завершение</text>
+
+  <g transform="translate(40,90)">
+    <rect width="150" height="140" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="75" cy="78" r="32" fill="#fff" stroke="#9A1FC0" stroke-width="2"/>
+    <circle cx="75" cy="69" r="11" fill="#9A1FC0"/><path d="M53 100 Q75 78 97 100" fill="#9A1FC0"/>
+  </g>
+  <text x="115" y="254" class="label" text-anchor="middle">Мерчант</text>
+  <g class="step" transform="translate(222,100)"><circle r="11"/><text>1</text></g>
+  <text x="242" y="105" class="mono" fill="#9A1FC0">POST /api/v1/deals</text>
+  <text x="242" y="125" class="mono" fill="#9A1FC0">X-Identity</text>
+  <text x="242" y="145" class="mono" fill="#9A1FC0">X-Signature</text>
+  <line x1="242" y1="166" x2="412" y2="166" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="420" y1="214" x2="198" y2="214" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="242" y="202" class="mono" fill="#1A1A1A">201, status: PENDING</text>
+
+  <rect x="420" y="70" width="500" height="340" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="444" y="98" class="name">merchant-api</text>
+  <text x="900" y="98" class="muted" text-anchor="end">шаги 1–3 в одном HTTP-запросе</text>
+
+  <g class="step" transform="translate(446,134)"><circle r="11"/><text>2</text></g>
+  <text x="466" y="139" class="label">Создаём сделку, курс и исполнителя</text>
+  <rect x="440" y="150" width="460" height="56" class="plate"/>
+  <text x="452" y="172" class="mono" fill="#1A1A1A">CreateDeal → FixRate → RouteAndAcquire</text>
+  <text x="452" y="194" class="text" fill="#1A1A1A">ошибка на шаге — Cancel с причиной и событие</text>
+
+  <g class="step" transform="translate(446,238)"><circle r="11"/><text>3</text></g>
+  <text x="466" y="243" class="label">Запускаем ожидание в фоне</text>
+  <rect x="440" y="254" width="460" height="34" class="plate"/>
+  <text x="452" y="276" class="mono" fill="#1A1A1A">go StartPaymentWorkflow(dealID, expiresAt)</text>
+
+  <g class="step" transform="translate(446,322)"><circle r="11"/><text>5</text></g>
+  <text x="466" y="327" class="label">Принимаем подтверждение провайдера</text>
+  <rect x="440" y="338" width="460" height="52" class="plate"/>
+  <text x="452" y="360" class="mono" fill="#1A1A1A">POST /webhooks/:provider_code</text>
+  <text x="452" y="381" class="text" fill="#1A1A1A">проверка подписи, SignalWithStart</text>
+
+  <line x1="560" y1="410" x2="560" y2="442" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="572" y="432" class="muted">старт процесса</text>
+  <line x1="820" y1="410" x2="820" y2="442" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="832" y="432" class="muted">payment-received</text>
+
+  <rect x="420" y="450" width="500" height="270" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="444" y="478" class="name">worker</text>
+  <text x="900" y="478" class="muted" text-anchor="end">Temporal, очередь payment-lifecycle</text>
+
+  <g class="step" transform="translate(446,514)"><circle r="11"/><text>4</text></g>
+  <text x="466" y="519" class="label">Ждём оплату, отмену или TTL</text>
+  <rect x="440" y="530" width="460" height="56" class="plate"/>
+  <text x="452" y="552" class="mono" fill="#1A1A1A">PaymentWaitWorkflow, ID = deal_id</text>
+  <text x="452" y="574" class="text" fill="#1A1A1A">сигналы: оплата, отмена, пауза и снятие паузы</text>
+
+  <g class="step" transform="translate(446,618)"><circle r="11"/><text>6</text></g>
+  <text x="466" y="623" class="label">Проводим и публикуем событие</text>
+  <rect x="440" y="634" width="460" height="66" class="key"/>
+  <text x="452" y="657" class="mono" fill="#C25E00">MarkPaid → Complete: PAID → COMPLETED</text>
+  <text x="452" y="682" class="mono" fill="#C25E00">JetStream deals.status_changed.&lt;id&gt;</text>
+
+  <text x="1085" y="118" class="label" text-anchor="middle">Провайдер</text>
+  <g transform="translate(1010,130)">
+    <rect width="150" height="110" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <rect x="16" y="36" width="118" height="10" fill="#FFFFFF"/><rect x="16" y="56" width="90" height="10" fill="#FFFFFF"/><rect x="16" y="76" width="104" height="10" fill="#FFFFFF"/>
+  </g>
+  <line x1="908" y1="160" x2="1002" y2="160" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="930" y="150" class="text">запрос</text>
+  <line x1="1010" y1="202" x2="908" y2="202" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="930" y="191" class="text" fill="#2F6FE0">реквизит</text>
+  <path d="M1085 240 V364 H908" fill="none" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="1097" y="306" class="text" fill="#2F6FE0">webhook</text>
+  <text x="1097" y="324" class="mono" fill="#2F6FE0">paid</text>
+
+  <text x="1085" y="488" class="label" text-anchor="middle">Трейдер</text>
+  <g transform="translate(1010,500)">
+    <rect width="150" height="100" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="12" y="50" class="mono" fill="#2F6FE0">Payments.Deal.</text>
+    <text x="12" y="70" class="mono" fill="#2F6FE0">ConfirmByTrader</text>
+  </g>
+  <line x1="1010" y1="558" x2="928" y2="558" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <g class="step" transform="translate(969,584)"><circle r="11"/><text>5</text></g>
+
+  <g transform="translate(40,610)">
+    <rect width="150" height="90" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="12" y="46" class="mono" fill="#1A1A1A">status:</text>
+    <text x="12" y="66" class="mono" fill="#1A1A1A">COMPLETED</text>
+  </g>
+  <line x1="420" y1="666" x2="198" y2="666" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(232,622)"><circle r="11"/><text>7</text></g>
+  <text x="252" y="627" class="mono" fill="#1A1A1A">webhook</text>
+  <text x="222" y="652" class="muted">через notification-service</text>
+</svg>

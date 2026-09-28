@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Как Reserve не даёт двум сделкам занять одни и те же деньги</text>
+
+  <g transform="translate(40,90)">
+    <rect width="170" height="110" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#F6821F"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="50" class="label">core</text>
+    <text x="14" y="72" class="muted">роутинг сделки</text>
+  </g>
+  <text x="40" y="230" class="mono" fill="#1A1A1A">CounterpartyCapacity</text>
+  <text x="40" y="248" class="mono" fill="#1A1A1A">.Reserve</text>
+  <text x="40" y="272" class="mono" fill="#1A1A1A">amount: 48.50</text>
+  <text x="40" y="290" class="mono" fill="#1A1A1A">referenceId: deal-…</text>
+  <line x1="210" y1="130" x2="292" y2="130" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="300" y1="170" x2="218" y2="170" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="300" y="70" width="600" height="460" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="880" y="96" class="muted" text-anchor="end">accounting</text>
+
+  <g class="step" transform="translate(326,110)"><circle r="11"/><text>1</text></g>
+  <text x="346" y="115" class="label">Берём два лока, по возрастанию ключа</text>
+  <rect x="320" y="128" width="440" height="52" class="plate"/>
+  <text x="332" y="150" class="mono" fill="#1A1A1A">reservation_lock:account:&lt;адрес&gt;:USDT</text>
+  <text x="332" y="170" class="mono" fill="#1A1A1A">reservation_lock:reference:&lt;id&gt;:USDT</text>
+  <text x="332" y="198" class="muted">SET NX, TTL 1 мин, продление раз в 20 с; занят — ждём до 2 с</text>
+
+  <g class="step" transform="translate(326,234)"><circle r="11"/><text>2</text></g>
+  <text x="346" y="239" class="label">Читаем Formance параллельно</text>
+  <rect x="320" y="252" width="440" height="52" class="plate"/>
+  <text x="332" y="274" class="text" fill="#1A1A1A">история транзакций по metadata[reference_id]</text>
+  <text x="332" y="294" class="text" fill="#1A1A1A">остаток на счёте available</text>
+
+  <g class="step" transform="translate(326,338)"><circle r="11"/><text>3</text></g>
+  <text x="346" y="343" class="label">Решаем до записи</text>
+  <rect x="320" y="356" width="440" height="52" class="plate"/>
+  <text x="332" y="378" class="text" fill="#1A1A1A">чужой открытый резерв →</text>
+  <text x="520" y="378" class="mono" fill="#1A1A1A">RESERVATION_CONFLICT</text>
+  <text x="332" y="398" class="text" fill="#1A1A1A">остаток меньше суммы →</text>
+  <text x="520" y="398" class="mono" fill="#1A1A1A">INSUFFICIENT_BALANCE</text>
+
+  <g class="step" transform="translate(326,442)"><circle r="11"/><text>4</text></g>
+  <text x="346" y="447" class="label">Пишем одну транзакцию и снимаем локи</text>
+  <rect x="320" y="460" width="560" height="52" class="key"/>
+  <text x="332" y="482" class="mono" fill="#C25E00">available −48.50  reserved +48.50</text>
+  <text x="332" y="502" class="mono" fill="#C25E00">Idempotency-Key: sha256(проводок)</text>
+
+  <rect x="980" y="120" width="180" height="70" rx="4" class="store"/>
+  <text x="996" y="150" class="label">Redis</text>
+  <text x="996" y="172" class="muted">локи и кэш балансов</text>
+  <line x1="760" y1="154" x2="972" y2="154" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="980" y="250" width="180" height="70" rx="4" class="store"/>
+  <text x="996" y="280" class="label">Formance</text>
+  <text x="996" y="302" class="muted">счета и транзакции</text>
+  <line x1="760" y1="278" x2="972" y2="278" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M880 486 H1070 V328" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1058" y="420" class="text" text-anchor="end">CreateTransaction</text>
+</svg>

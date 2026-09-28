@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .state rect { fill: #FFF6EA; stroke: #F6821F; stroke-width: 2; }
+      .state text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .final rect { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="320" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Статусы реквизита</text>
+
+  <text x="40" y="186" class="mono" fill="#1A1A1A">Create</text>
+  <line x1="100" y1="182" x2="172" y2="182" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="state" transform="translate(180,160)"><rect width="150" height="44" rx="6"/><text x="75" y="22">DISABLED</text></g>
+  <g class="state" transform="translate(530,160)"><rect width="150" height="44" rx="6"/><text x="75" y="22">ACTIVE</text></g>
+  <g class="state final" transform="translate(880,160)"><rect width="150" height="44" rx="6"/><text x="75" y="22">BUSY</text></g>
+
+  <path d="M255 160 Q430 90 598 154" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="430" y="80" class="mono" fill="#1A1A1A" text-anchor="middle">SetEnabled(true)</text>
+  <text x="430" y="98" class="muted" text-anchor="middle">только с привязкой Telegram</text>
+  <path d="M605 204 Q430 290 262 210" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="430" y="276" class="mono" fill="#1A1A1A" text-anchor="middle">SetEnabled(false)</text>
+
+  <path d="M605 160 Q780 90 948 154" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="780" y="80" class="mono" fill="#1A1A1A" text-anchor="middle">Acquire</text>
+  <text x="780" y="98" class="muted" text-anchor="middle">current_deal_id = dealId</text>
+  <path d="M955 204 Q780 290 612 210" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="780" y="276" class="mono" fill="#1A1A1A" text-anchor="middle">Release, ForceRelease</text>
+  <text x="780" y="296" class="muted" text-anchor="middle">Release — по dealId и traderId</text>
+
+  <text x="1050" y="176" class="text" fill="#1A1A1A">нельзя:</text>
+  <text x="1050" y="196" class="muted">выключить, удалить</text>
+  <text x="1050" y="212" class="muted">REQUISITE_BUSY</text>
+
+</svg>

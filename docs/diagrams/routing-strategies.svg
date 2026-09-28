@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 15px; font-weight: 700; fill: #1A1A1A; }
+      .stage { fill: #FFF6EA; stroke: #F6821F; stroke-width: 2; }
+      .p1 rect { fill: #2F6FE0; } .p1 text { fill: #FFFFFF; }
+      .p2 rect { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 1.5; } .p2 text { fill: #2F6FE0; }
+      .chip text { font-size: 15px; font-weight: 700; text-anchor: middle; dominant-baseline: central; }
+    </style>
+  </defs>
+  <rect width="1200" height="420" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Три стратегии одной группы трафика</text>
+
+  <g class="chip p1" transform="translate(40,70)"><rect width="28" height="24" rx="4"/><text x="14" y="12">A</text></g>
+  <text x="76" y="87" class="text">приоритет 1</text>
+  <g class="chip p2" transform="translate(180,70)"><rect width="28" height="24" rx="4"/><text x="14" y="12">C</text></g>
+  <text x="216" y="87" class="text">приоритет 2</text>
+  <text x="330" y="87" class="muted">кандидаты уже отсортированы: приоритет, затем давность работы трейдера, затем комиссия</text>
+
+  <text x="40" y="160" class="mono">sequential</text>
+  <text x="40" y="180" class="muted">по умолчанию</text>
+  <rect x="260" y="128" width="80" height="64" rx="6" class="stage"/>
+  <g class="chip p1" transform="translate(278,138)"><rect width="44" height="44" rx="6"/><text x="22" y="22">A</text></g>
+  <line x1="340" y1="160" x2="392" y2="160" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="400" y="128" width="80" height="64" rx="6" class="stage"/>
+  <g class="chip p1" transform="translate(418,138)"><rect width="44" height="44" rx="6"/><text x="22" y="22">B</text></g>
+  <line x1="480" y1="160" x2="532" y2="160" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="540" y="128" width="80" height="64" rx="6" class="stage"/>
+  <g class="chip p2" transform="translate(558,138)"><rect width="44" height="44" rx="6"/><text x="22" y="22">C</text></g>
+  <line x1="620" y1="160" x2="672" y2="160" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="680" y="128" width="80" height="64" rx="6" class="stage"/>
+  <g class="chip p2" transform="translate(698,138)"><rect width="44" height="44" rx="6"/><text x="22" y="22">D</text></g>
+  <text x="820" y="156" class="text">по одному кандидату за шаг</text>
+  <text x="820" y="176" class="muted">4 шага подряд, самый предсказуемый порядок</text>
+
+  <text x="40" y="260" class="mono">staged_race</text>
+  <text x="40" y="280" class="muted">он же top_n</text>
+  <rect x="260" y="228" width="136" height="64" rx="6" class="stage"/>
+  <g class="chip p1" transform="translate(278,238)"><rect width="44" height="44" rx="6"/><text x="22" y="22">A</text></g>
+  <g class="chip p1" transform="translate(334,238)"><rect width="44" height="44" rx="6"/><text x="22" y="22">B</text></g>
+  <line x1="396" y1="260" x2="448" y2="260" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="456" y="228" width="136" height="64" rx="6" class="stage"/>
+  <g class="chip p2" transform="translate(474,238)"><rect width="44" height="44" rx="6"/><text x="22" y="22">C</text></g>
+  <g class="chip p2" transform="translate(530,238)"><rect width="44" height="44" rx="6"/><text x="22" y="22">D</text></g>
+  <text x="820" y="256" class="text">гонка внутри одного приоритета</text>
+  <text x="820" y="276" class="muted">2 шага, второй приоритет ждёт, пока проиграет первый</text>
+
+  <text x="40" y="360" class="mono">full_race</text>
+  <rect x="260" y="328" width="248" height="64" rx="6" class="stage"/>
+  <g class="chip p1" transform="translate(278,338)"><rect width="44" height="44" rx="6"/><text x="22" y="22">A</text></g>
+  <g class="chip p1" transform="translate(334,338)"><rect width="44" height="44" rx="6"/><text x="22" y="22">B</text></g>
+  <g class="chip p2" transform="translate(390,338)"><rect width="44" height="44" rx="6"/><text x="22" y="22">C</text></g>
+  <g class="chip p2" transform="translate(446,338)"><rect width="44" height="44" rx="6"/><text x="22" y="22">D</text></g>
+  <text x="820" y="356" class="text">все кандидаты сразу</text>
+  <text x="820" y="376" class="muted">1 шаг, быстрее всего, но приоритет не гарантирован</text>
+</svg>

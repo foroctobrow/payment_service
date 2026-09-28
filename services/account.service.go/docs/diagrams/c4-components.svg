@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1560 620" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .proto { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #6B6B6B; }
+      .pkg   { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; font-weight: 700; fill: #1A1A1A; }
+      .svc   { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .store { fill: #F1F1F1; stroke: #B5B5B5; stroke-width: 1; }
+      .peer  { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 1.5; }
+    </style>
+  </defs>
+  <rect width="1560" height="620" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты account.service.go</text>
+
+  <rect x="390" y="66" width="770" height="510" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="410" y="92" class="svc">account.service.go</text>
+  <text x="576" y="92" class="muted">[Go-сервис]</text>
+
+  <g transform="translate(410,110)"><rect width="210" height="324" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">controller/nats_rpc</text><text x="12" y="42" class="muted">[NATS-контроллер]</text><text x="12" y="66" class="text">36 обработчиков</text></g>
+  <text x="422" y="198" class="text">+ событие Audit.Event</text>
+  <g transform="translate(410,470)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">internal/app</text><text x="12" y="42" class="muted">[фоновые задачи]</text><text x="12" y="66" class="text">cron раз в 1 ч</text></g>
+  <g transform="translate(670,110)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">usecase/auth</text><text x="12" y="42" class="muted">[usecase]</text><text x="12" y="66" class="text">вход, 2FA, refresh</text></g>
+  <g transform="translate(670,230)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">usecase/users</text><text x="12" y="42" class="muted">[usecase]</text><text x="12" y="66" class="text">статусы, роли, токены</text></g>
+  <g transform="translate(670,350)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">usecase/audit</text><text x="12" y="42" class="muted">[usecase]</text><text x="12" y="66" class="text">выборки аудит-лога</text></g>
+  <g transform="translate(670,470)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">usecase/sessions</text><text x="12" y="42" class="muted">[usecase]</text><text x="12" y="66" class="text">отзыв и чистка сессий</text></g>
+  <g transform="translate(930,110)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">repo/jwt</text><text x="12" y="42" class="muted">[выпуск токенов]</text><text x="12" y="66" class="text">access JWT, setup-токен</text></g>
+  <g transform="translate(930,230)"><rect width="210" height="204" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">repo/persistent</text><text x="12" y="42" class="muted">[репозиторий]</text><text x="12" y="66" class="text">users, sessions, totp</text></g>
+  <text x="942" y="318" class="text">audit_logs</text>
+  <g transform="translate(930,470)"><rect width="210" height="84" rx="4" class="comp"/>
+    <text x="12" y="24" class="pkg">repo/cache</text><text x="12" y="42" class="muted">[кэш]</text><text x="12" y="66" class="text">пользователи, лимит TOTP</text></g>
+  <line x1="620" y1="272" x2="650" y2="272" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="650" y1="152" x2="650" y2="490" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="650" y1="152" x2="662" y2="152" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="650" y1="272" x2="662" y2="272" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="650" y1="392" x2="662" y2="392" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="650" y1="490" x2="662" y2="490" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="620" y1="530" x2="662" y2="530" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="880" y1="152" x2="905" y2="152" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="880" y1="272" x2="905" y2="272" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="880" y1="392" x2="905" y2="392" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="880" y1="512" x2="905" y2="512" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="905" y1="152" x2="905" y2="512" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="905" y1="152" x2="922" y2="152" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="905" y1="332" x2="922" y2="332" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="905" y1="512" x2="922" y2="512" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g transform="translate(40,110)"><rect width="200" height="84" rx="4" class="peer"/>
+    <text x="14" y="36" class="svc">core.service.go</text><text x="14" y="58" class="muted">admin-api</text></g>
+  <line x1="248" y1="152" x2="402" y2="152" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="256" y="140" class="text">входит, управляет</text>
+  <text x="256" y="172" class="proto">[CQRS-запросы]</text>
+
+  <g transform="translate(40,230)"><rect width="200" height="84" rx="4" class="peer"/>
+    <text x="14" y="36" class="svc">platform.service.go</text><text x="14" y="58" class="muted">и core.service.go</text></g>
+  <line x1="248" y1="272" x2="402" y2="272" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="256" y="260" class="text">пишут аудит</text>
+  <text x="256" y="292" class="proto">[NATS Audit.Event]</text>
+
+  <g transform="translate(1340,302)"><rect width="180" height="60" rx="4" class="store"/>
+    <text x="14" y="26" class="svc">PostgreSQL</text><text x="14" y="46" class="muted">account_db</text></g>
+  <line x1="1140" y1="332" x2="1332" y2="332" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1172" y="320" class="text">читает и пишет</text>
+  <text x="1172" y="352" class="proto">[SQL]</text>
+
+  <g transform="translate(1340,482)"><rect width="180" height="60" rx="4" class="store"/>
+    <text x="14" y="26" class="svc">Redis</text><text x="14" y="46" class="muted">кэш и счётчики</text></g>
+  <line x1="1140" y1="512" x2="1332" y2="512" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1172" y="500" class="text">кэширует</text>
+  <text x="1172" y="532" class="proto">[Redis]</text>
+</svg>

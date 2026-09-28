@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 750" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 13px; fill: #1A1A1A; }
+      .verb  { font-size: 13px; fill: #1A1A1A; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .ext   { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 2; }
+      .store { fill: #F1F1F1; }
+      .store-name { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; fill: #444; }
+    </style>
+  </defs>
+  <rect width="1380" height="750" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты telegram.service.go</text>
+
+  <rect x="40" y="120" width="150" height="70" rx="6" class="ext"/>
+  <text x="54" y="150" class="name">core</text>
+  <text x="54" y="172" class="muted">[Go-сервис]</text>
+  <rect x="40" y="210" width="150" height="70" rx="6" class="ext"/>
+  <text x="54" y="240" class="name">rate.service.go</text>
+  <text x="54" y="262" class="muted">[Go-сервис]</text>
+
+  <line x1="190" y1="155" x2="352" y2="155" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="200" y="145" class="verb">спор, привязка</text>
+  <text x="200" y="173" class="muted">[CQRS]</text>
+  <line x1="190" y1="245" x2="352" y2="245" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="200" y="235" class="verb">тех-алерт</text>
+  <text x="200" y="263" class="muted">[CQRS]</text>
+
+  <g transform="translate(30,0)">
+  <rect x="300" y="80" width="760" height="530" rx="6" fill="none" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="320" y="106" class="name">telegram.service.go</text>
+  <text x="494" y="106" class="muted">[Go-сервис]</text>
+
+  <rect x="330" y="120" width="210" height="160" class="comp"/>
+  <text x="344" y="144" class="name">controller/nats_rpc</text>
+  <text x="344" y="162" class="muted">[NATS-контроллер]</text>
+  <text x="344" y="184" class="text">три события,</text>
+  <text x="344" y="202" class="text">разбор и фильтр полей</text>
+
+  <rect x="630" y="120" width="170" height="66" class="comp"/>
+  <text x="644" y="143" class="name">usecase/bind</text>
+  <text x="644" y="160" class="muted">[usecase]</text>
+  <text x="644" y="178" class="text">«бот привязан»</text>
+
+  <rect x="630" y="206" width="170" height="66" class="comp"/>
+  <text x="644" y="229" class="name">usecase/tech_alert</text>
+  <text x="644" y="246" class="muted">[usecase]</text>
+  <text x="644" y="264" class="text">текст алерта</text>
+
+  <line x1="540" y1="153" x2="622" y2="153" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="550" y="143" class="verb">привязка</text>
+  <line x1="540" y1="239" x2="622" y2="239" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="550" y="229" class="verb">алерт</text>
+
+  <rect x="630" y="330" width="170" height="130" class="comp"/>
+  <text x="644" y="354" class="name">usecase/dispute</text>
+  <text x="644" y="372" class="muted">[usecase]</text>
+  <text x="644" y="394" class="text">карточка, ответ,</text>
+  <text x="644" y="412" class="text">сверка раз в 30 с</text>
+
+  <path d="M435 280 V395 H622" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="540" y="385" class="verb">спор</text>
+
+  <rect x="870" y="120" width="170" height="152" class="comp"/>
+  <text x="884" y="144" class="name">controller/tgbot</text>
+  <text x="884" y="162" class="muted">[Telegram-бот]</text>
+  <text x="884" y="184" class="text">long polling,</text>
+  <text x="884" y="202" class="text">кнопки, отправка,</text>
+  <text x="884" y="220" class="text">проверка чата</text>
+
+  <line x1="800" y1="153" x2="862" y2="153" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="810" y="143" class="verb">шлёт</text>
+  <line x1="800" y1="239" x2="862" y2="239" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="810" y="229" class="verb">шлёт</text>
+
+  <path d="M800 360 H950 V280" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="812" y="350" class="verb">шлёт карточку</text>
+  <path d="M1000 272 V420 H808" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="830" y="410" class="verb">передаёт нажатие</text>
+
+  <rect x="330" y="520" width="210" height="70" class="comp"/>
+  <text x="344" y="543" class="name">repo/redis</text>
+  <text x="344" y="561" class="muted">[репозиторий]</text>
+  <text x="344" y="580" class="text">карточки и замки</text>
+
+  <path d="M630 440 H480 V512" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="492" y="430" class="verb">хранит карточку</text>
+
+  <rect x="630" y="520" width="240" height="70" class="comp"/>
+  <text x="644" y="543" class="name">repo/webapi</text>
+  <text x="644" y="561" class="muted">[CQRS-клиент]</text>
+  <text x="644" y="580" class="text">GetURL, GetStatus, TGRespond</text>
+  <line x1="715" y1="460" x2="715" y2="512" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="725" y="492" class="verb">вызывает</text>
+
+  <rect x="1180" y="160" width="150" height="70" rx="6" class="ext"/>
+  <text x="1194" y="190" class="label">Telegram</text>
+  <text x="1194" y="212" class="muted">[Bot API]</text>
+  <line x1="1048" y1="195" x2="1172" y2="195" stroke="#1A1A1A" stroke-width="1.6" marker-start="url(#a-ink)" marker-end="url(#a-ink)"/>
+  <text x="1072" y="185" class="verb">сообщения</text>
+  <text x="1072" y="213" class="muted">[HTTPS]</text>
+
+  <line x1="435" y1="590" x2="435" y2="664" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="445" y="636" class="verb">хеши и замки</text>
+  <text x="445" y="652" class="muted">[Redis]</text>
+  <rect x="330" y="672" width="210" height="46" rx="4" class="store"/>
+  <text x="435" y="700" class="store-name" text-anchor="middle">Redis</text>
+
+  <line x1="680" y1="590" x2="680" y2="664" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="690" y="636" class="verb">ответ, статус</text>
+  <text x="690" y="652" class="muted">[CQRS]</text>
+  <rect x="600" y="672" width="160" height="50" rx="6" class="ext"/>
+  <text x="614" y="702" class="name">core worker</text>
+
+  <line x1="830" y1="590" x2="830" y2="664" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="840" y="636" class="verb">ссылка на файл</text>
+  <text x="840" y="652" class="muted">[CQRS]</text>
+  <rect x="790" y="672" width="180" height="50" rx="6" class="ext"/>
+  <text x="804" y="702" class="name">files.service.go</text>
+  </g>
+</svg>

@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .state { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 15px; font-weight: 700; fill: #1A1A1A; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="500" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Состояния виджета и кто их выставляет</text>
+
+  <rect x="40" y="170" width="150" height="60" rx="6" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="1.6"/>
+  <text x="115" y="206" class="state" text-anchor="middle">loading</text>
+  <text x="115" y="150" class="muted" text-anchor="middle">ждём sessionToken</text>
+
+  <line x1="190" y1="200" x2="282" y2="200" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="290" y="160" width="230" height="80" rx="6" class="plate"/>
+  <text x="405" y="194" class="state" text-anchor="middle">active</text>
+  <text x="405" y="218" class="muted" text-anchor="middle">NEW, PENDING_REQ, PENDING, PAID</text>
+
+  <rect x="290" y="340" width="230" height="80" rx="6" fill="#FCE4EC" stroke="#D0305A" stroke-width="1.6" stroke-dasharray="6 4"/>
+  <text x="405" y="374" class="state" text-anchor="middle">confirm</text>
+  <text x="405" y="398" class="muted" text-anchor="middle">только в браузере</text>
+  <line x1="370" y1="240" x2="370" y2="332" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="358" y="292" class="text" fill="#D0305A" text-anchor="end">«Отменить»</text>
+  <line x1="440" y1="340" x2="440" y2="248" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="452" y="292" class="text" fill="#D0305A">«Назад»</text>
+
+  <rect x="760" y="70" width="400" height="80" rx="6" class="key"/>
+  <text x="780" y="104" class="state">success</text>
+  <text x="780" y="128" class="text" fill="#1A1A1A">сделка в COMPLETED</text>
+
+  <rect x="760" y="170" width="400" height="80" rx="6" fill="#F1F1F1"/>
+  <text x="780" y="204" class="state">timeout</text>
+  <text x="780" y="228" class="text" fill="#1A1A1A">прошёл expiresAt или причина EXPIRED</text>
+
+  <rect x="760" y="270" width="400" height="80" rx="6" fill="#F1F1F1"/>
+  <text x="780" y="304" class="state">canceled</text>
+  <text x="780" y="328" class="text" fill="#1A1A1A">CANCELED с любой причиной, кроме EXPIRED</text>
+
+  <rect x="760" y="370" width="400" height="80" rx="6" fill="#F1F1F1"/>
+  <text x="780" y="404" class="state">unavailable</text>
+  <text x="780" y="428" class="text" fill="#1A1A1A">ключа нет в Redis, терминал выключен</text>
+
+  <path d="M520 180 H620 V110 H752" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="520" y1="210" x2="752" y2="210" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="540" y="200" class="muted">сервер или таймер вкладки</text>
+  <path d="M520 230 H620 V300 H752" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M520 400 H716 V330 H752" fill="none" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="540" y="390" class="text" fill="#D0305A">«Да, отменить»</text>
+  <path d="M115 230 V470 H690 V420 H752" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="130" y="460" class="muted">400, 403 или 404 от merchant-api</text>
+</svg>

@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-orange" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#F6821F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .tag rect { fill: #F1F1F1; } .tag text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #444; }
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Спор по сделке: от события core до ответа провайдера кнопкой</text>
+
+  <rect x="40" y="90" width="170" height="110" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="56" y="120" class="name">core.service.go</text>
+  <text x="56" y="144" class="muted">открывает спор,</text>
+  <text x="56" y="162" class="muted">принимает ответ</text>
+
+  <g class="step" transform="translate(236,116)"><circle r="11"/><text>1</text></g>
+  <text x="254" y="121" class="muted">событие NATS</text>
+  <line x1="210" y1="140" x2="392" y2="140" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="216" y="162" class="mono" style="font-size:12px" fill="#C25E00">Payments.Deal.Disputed</text>
+
+  <rect x="400" y="70" width="460" height="600" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="840" y="96" class="muted" text-anchor="end">telegram.service.go</text>
+
+  <g class="step" transform="translate(426,112)"><circle r="11"/><text>2</text></g>
+  <text x="446" y="117" class="label">Проверяем поля и дубль</text>
+  <rect x="420" y="130" width="330" height="52" class="plate"/>
+  <text x="432" y="152" class="mono" fill="#1A1A1A">dispute_reason, provider_tg_group_id</text>
+  <text x="432" y="172" class="text" fill="#1A1A1A">карточка уже висит — пропускаем</text>
+  <g class="tag" transform="translate(774,143)"><rect width="64" height="26" rx="4"/><text x="32" y="17" text-anchor="middle">Redis</text></g>
+  <line x1="750" y1="156" x2="774" y2="156" stroke="#B0B0B0" stroke-width="1.2"/>
+
+  <g class="step" transform="translate(426,214)"><circle r="11"/><text>3</text></g>
+  <text x="446" y="219" class="label">Берём ссылку на первое вложение</text>
+  <rect x="420" y="232" width="330" height="34" class="plate"/>
+  <text x="432" y="254" class="mono" fill="#1A1A1A">Files.GetURL → presigned URL</text>
+
+  <rect x="900" y="218" width="180" height="56" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="1.5"/>
+  <text x="916" y="251" class="name">files.service.go</text>
+  <line x1="758" y1="249" x2="892" y2="249" stroke="#1A1A1A" stroke-width="1.6" marker-start="url(#a-ink)" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(426,300)"><circle r="11"/><text>4</text></g>
+  <text x="446" y="305" class="label">Отправляем карточку в группу</text>
+  <rect x="420" y="318" width="330" height="52" class="plate"/>
+  <text x="432" y="340" class="mono" fill="#1A1A1A">sendPhoto | sendDocument | sendMessage</text>
+  <text x="432" y="360" class="text" fill="#1A1A1A">связь с сообщением — в Redis на 7 дней</text>
+  <line x1="750" y1="336" x2="892" y2="336" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(426,396)"><circle r="11"/><text>5</text></g>
+  <text x="446" y="401" class="label">Ловим нажатие, проверяем чат</text>
+  <rect x="420" y="412" width="330" height="54" class="plate"/>
+  <text x="432" y="433" class="text" fill="#1A1A1A">чат нажатия совпадает с чатом карточки</text>
+  <text x="432" y="455" class="mono" fill="#1A1A1A">SET NX dispute_tg_lock:… 2m</text>
+  <line x1="900" y1="436" x2="758" y2="436" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="780" y="424" class="mono" fill="#2F6FE0">dr:…:pe</text>
+
+  <g class="step" transform="translate(426,490)"><circle r="11"/><text>6</text></g>
+  <text x="446" y="495" class="label">Передаём ответ, правим карточку</text>
+  <rect x="420" y="508" width="330" height="52" class="key"/>
+  <text x="432" y="530" class="mono" fill="#C25E00">editMessageText</text>
+  <text x="432" y="550" class="text" fill="#C25E00">без кнопок, с именем и временем</text>
+  <line x1="750" y1="526" x2="892" y2="526" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(426,594)"><circle r="11"/><text>7</text></g>
+  <text x="446" y="599" class="label">Раз в 30 с сверяем открытые карточки</text>
+  <rect x="420" y="612" width="330" height="34" class="plate"/>
+  <text x="432" y="634" class="text" fill="#1A1A1A">не DISPUTE — закрыл «Администратор»</text>
+
+  <path d="M400 534 H160 V208" fill="none" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="172" y="521" class="mono" fill="#C25E00">Payments.Dispute.TGRespond</text>
+  <path d="M400 629 H110 V208" fill="none" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="172" y="616" class="mono" fill="#C25E00">Payments.Deal.GetStatus</text>
+
+  <g transform="translate(900,300)">
+    <rect width="260" height="250" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="260" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <rect x="16" y="34" width="228" height="150" fill="#FFFFFF"/>
+    <text x="28" y="58" class="label">Новый диспут</text>
+    <text x="28" y="82" class="text">ID сделки, направление</text>
+    <text x="28" y="102" class="text">Причина: Есть платёж</text>
+    <text x="28" y="122" class="text">Реквизит, сумма</text>
+    <rect x="28" y="140" width="98" height="30" rx="4" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="1.2"/>
+    <text x="77" y="160" class="text" fill="#2F6FE0" text-anchor="middle">Есть платёж</text>
+    <rect x="134" y="140" width="98" height="30" rx="4" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="1.2"/>
+    <text x="183" y="160" class="text" fill="#2F6FE0" text-anchor="middle">Нет платежа</text>
+    <text x="16" y="212" class="text" fill="#2F6FE0">Провайдер нажимает</text>
+    <text x="16" y="232" class="text" fill="#2F6FE0">одну из двух кнопок</text>
+  </g>
+  <text x="1030" y="574" class="label" text-anchor="middle">Группа провайдера</text>
+</svg>

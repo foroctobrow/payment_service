@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 450" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#9A1FC0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .state rect { fill: #FFF6EA; stroke: #F6821F; stroke-width: 2; }
+      .state text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .final rect { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="450" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Статусы сделки</text>
+
+  <line x1="40" y1="424" x2="72" y2="424" stroke="#9A1FC0" stroke-width="2"/><text x="80" y="429" class="text">только IN</text>
+  <line x1="170" y1="424" x2="202" y2="424" stroke="#D0305A" stroke-width="2"/><text x="210" y="429" class="text">только OUT</text>
+  <line x1="310" y1="424" x2="342" y2="424" stroke="#1A1A1A" stroke-width="2"/><text x="350" y="429" class="text">оба направления</text>
+
+  <g class="state" transform="translate(60,150)"><rect width="130" height="44" rx="6"/><text x="65" y="22">NEW</text></g>
+  <g class="state" transform="translate(260,150)"><rect width="130" height="44" rx="6"/><text x="65" y="22">PENDING</text></g>
+  <g class="state" transform="translate(460,150)"><rect width="130" height="44" rx="6"/><text x="65" y="22">PAID</text></g>
+  <g class="state final" transform="translate(660,150)"><rect width="130" height="44" rx="6"/><text x="65" y="22">COMPLETED</text></g>
+  <g class="state final" transform="translate(660,350)"><rect width="130" height="44" rx="6"/><text x="65" y="22">CANCELED</text></g>
+  <g class="state" transform="translate(870,250)"><rect width="130" height="44" rx="6"/><text x="65" y="22">DISPUTE</text></g>
+
+  <line x1="190" y1="172" x2="252" y2="172" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="221" y="140" class="muted" text-anchor="middle">исполнитель</text>
+  <text x="221" y="154" class="muted" text-anchor="middle">найден</text>
+  <line x1="390" y1="172" x2="452" y2="172" stroke="#9A1FC0" stroke-width="1.6" marker-end="url(#a-purple)"/>
+  <text x="421" y="154" class="muted" text-anchor="middle">оплата</text>
+  <line x1="590" y1="172" x2="652" y2="172" stroke="#9A1FC0" stroke-width="1.6" marker-end="url(#a-purple)"/>
+  <text x="621" y="154" class="muted" text-anchor="middle">сразу</text>
+
+  <path d="M325 150 Q525 50 719 146" fill="none" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="525" y="92" class="text" fill="#D0305A" text-anchor="middle">выплата подтверждена</text>
+
+  <path d="M125 194 V372 H652" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M325 194 V372" fill="none" stroke="#1A1A1A" stroke-width="1.6"/>
+  <text x="480" y="362" class="text" text-anchor="middle">отмена или TTL (IN)</text>
+
+  <path d="M390 188 Q630 260 862 272" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a-pink)"/>
+  <text x="600" y="282" class="text" fill="#D0305A" text-anchor="middle">TTL выплаты</text>
+
+  <path d="M790 172 H935 V242" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M790 372 H935 V302" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="862" y="162" class="muted" text-anchor="middle">спор</text>
+  <text x="862" y="392" class="muted" text-anchor="middle">спор</text>
+  <text x="1016" y="266" class="text">решение:</text>
+  <text x="1016" y="286" class="muted">COMPLETED или CANCELED</text>
+</svg>

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .card  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1.5; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Как сделка попадает в сводку</text>
+
+  <g transform="translate(40,105)">
+    <rect width="200" height="80" rx="4" class="card"/>
+    <text x="14" y="28" class="name">core</text>
+    <text x="14" y="52" class="text" fill="#1A1A1A">меняет статус сделки</text>
+  </g>
+  <g class="step" transform="translate(271,122)"><circle r="11"/><text>1</text></g>
+  <line x1="240" y1="145" x2="302" y2="145" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <text x="310" y="104" class="muted">NATS JetStream</text>
+  <rect x="310" y="115" width="230" height="60" rx="4" fill="#1A1A1A"/>
+  <text x="326" y="140" class="mono" fill="#FFFFFF">DEAL_EVENTS</text>
+  <text x="326" y="162" class="mono" fill="#FFFFFF" font-size="12">deals.status_changed.&lt;id&gt;</text>
+  <line x1="540" y1="145" x2="572" y2="145" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="580" y="70" width="580" height="460" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="1140" y="94" class="muted" text-anchor="end">analytics.service.go</text>
+
+  <g class="step" transform="translate(606,110)"><circle r="11"/><text>2</text></g>
+  <text x="626" y="115" class="label">Забираем событие, не больше 600 в секунду</text>
+  <rect x="600" y="128" width="320" height="34" class="plate"/>
+  <text x="612" y="150" class="mono" fill="#1A1A1A">durable: analytics-projector</text>
+
+  <g class="step" transform="translate(606,200)"><circle r="11"/><text>3</text></g>
+  <text x="626" y="205" class="label">Строим факт из снимка сделки</text>
+  <rect x="600" y="218" width="320" height="52" class="plate"/>
+  <text x="612" y="240" class="mono" fill="#1A1A1A">DealFactBuilder</text>
+  <text x="612" y="260" class="text" fill="#1A1A1A">флаги корзин и деньги</text>
+
+  <g class="step" transform="translate(606,310)"><circle r="11"/><text>4</text></g>
+  <text x="626" y="315" class="label">Пишем, только если версия новее</text>
+  <rect x="600" y="328" width="340" height="52" class="key"/>
+  <text x="612" y="350" class="mono" fill="#C25E00">ON CONFLICT (deal_id, created_at)</text>
+  <text x="612" y="370" class="mono" fill="#C25E00">source_version &lt; EXCLUDED</text>
+  <line x1="940" y1="354" x2="972" y2="354" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="980" y="318" width="160" height="72" rx="4" class="store"/>
+  <text x="994" y="344" class="mono" fill="#444">analytics.</text>
+  <text x="994" y="364" class="mono" fill="#444">deal_facts</text>
+  <text x="994" y="382" class="muted">строка на сделку</text>
+
+  <g transform="translate(40,430)">
+    <rect width="200" height="60" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2"/>
+    <rect width="200" height="14" fill="#1A1A1A"/>
+    <text x="14" y="42" class="text" fill="#1A1A1A">Админка</text>
+  </g>
+  <g class="step" transform="translate(271,437)"><circle r="11"/><text>5</text></g>
+  <line x1="240" y1="460" x2="302" y2="460" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g transform="translate(310,420)">
+    <rect width="230" height="80" rx="4" class="card"/>
+    <text x="14" y="28" class="name">core admin-api</text>
+    <text x="14" y="54" class="mono" fill="#1A1A1A" font-size="12">GET /analytics/summary</text>
+  </g>
+  <line x1="540" y1="450" x2="572" y2="450" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="580" y1="480" x2="548" y2="480" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(606,420)"><circle r="11"/><text>6</text></g>
+  <text x="626" y="425" class="label">Считаем сводку одним запросом</text>
+  <rect x="600" y="438" width="360" height="74" class="plate"/>
+  <text x="612" y="460" class="mono" fill="#1A1A1A">Analytics.Summary</text>
+  <text x="612" y="480" class="mono" fill="#1A1A1A">GROUPING SETS</text>
+  <text x="612" y="502" class="text" fill="#1A1A1A">терминалы, итоги по валютам, общий итог</text>
+  <path d="M1060 390 V475 H968" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+</svg>

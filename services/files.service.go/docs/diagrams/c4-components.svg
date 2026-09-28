@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 820" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .svc   { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 2.5; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="820" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты files.service.go</text>
+
+  <g transform="translate(40,110)">
+    <rect width="170" height="70" rx="4" class="svc"/>
+    <text x="14" y="30" class="name" font-size="12">admin.service.nuxt</text>
+    <text x="14" y="52" class="muted">серверная часть</text>
+  </g>
+  <g transform="translate(40,200)">
+    <rect width="170" height="190" rx="4" class="svc"/>
+    <text x="14" y="30" class="name">core</text>
+    <text x="14" y="52" class="muted">merchant-api, admin-api</text>
+    <text x="14" y="70" class="muted">открывают споры</text>
+  </g>
+  <g transform="translate(40,410)">
+    <rect width="170" height="60" rx="4" class="svc"/>
+    <text x="14" y="26" class="name">telegram</text>
+    <text x="14" y="46" class="muted">споры провайдерам</text>
+  </g>
+
+  <rect x="440" y="70" width="720" height="600" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="460" y="96" class="name">files.service.go</text>
+  <text x="600" y="96" class="muted">[Go-сервис]</text>
+
+  <line x1="210" y1="145" x2="452" y2="145" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="131" class="text" fill="#1A1A1A" text-anchor="middle">читает файлы и ссылки</text>
+  <text x="325" y="165" class="mono" fill="#6B6B6B" text-anchor="middle">[HTTP GET /v1/files/*]</text>
+
+  <line x1="210" y1="225" x2="452" y2="225" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="211" class="text" fill="#1A1A1A" text-anchor="middle">загружает файлы</text>
+  <text x="325" y="245" class="mono" fill="#6B6B6B" text-anchor="middle">[HTTP POST /v1/upload]</text>
+
+  <line x1="210" y1="365" x2="452" y2="365" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="351" class="text" fill="#1A1A1A" text-anchor="middle">подтверждает и удаляет</text>
+  <text x="325" y="385" class="mono" fill="#6B6B6B" text-anchor="middle">[CQRS Files.*]</text>
+
+  <line x1="210" y1="440" x2="452" y2="440" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="325" y="426" class="text" fill="#1A1A1A" text-anchor="middle">запрашивает ссылки</text>
+  <text x="325" y="460" class="mono" fill="#6B6B6B" text-anchor="middle">[CQRS Files.GetURL]</text>
+
+  <g transform="translate(460,110)">
+    <rect width="200" height="140" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">controller/restapi/v1</text>
+    <text x="12" y="40" class="muted">[HTTP-контроллер]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">Fiber, 5 маршрутов /v1</text>
+    <text x="12" y="78" class="muted" style="fill:#1A1A1A">за X-Service-Token</text>
+    <text x="12" y="104" class="muted" style="fill:#1A1A1A">/readyz: PostgreSQL и S3</text>
+  </g>
+  <g transform="translate(460,330)">
+    <rect width="200" height="140" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">controller/nats_rpc/v1</text>
+    <text x="12" y="40" class="muted">[NATS-контроллер]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">3 команды и 3 запроса</text>
+  </g>
+
+  <line x1="660" y1="180" x2="700" y2="180" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="660" y1="400" x2="700" y2="400" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="700" y1="180" x2="700" y2="400" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="700" y1="286" x2="732" y2="286" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g transform="translate(740,110)">
+    <rect width="280" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">attachment.OrphanCleanupJob</text>
+    <text x="12" y="40" class="muted">[фоновая задача]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">раз в час ищет неподтверждённые</text>
+  </g>
+  <line x1="880" y1="182" x2="880" y2="242" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="892" y="206" class="text" fill="#1A1A1A">удаляет старые</text>
+  <text x="892" y="224" class="mono" fill="#6B6B6B">[DeleteOrphaned]</text>
+
+  <g transform="translate(740,250)">
+    <rect width="280" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">usecase/attachment</text>
+    <text x="12" y="40" class="muted">[usecase]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">загрузка, ссылки, подтверждение, удаление</text>
+  </g>
+
+  <line x1="880" y1="322" x2="880" y2="520" stroke="#1A1A1A" stroke-width="1.6"/>
+  <text x="892" y="426" class="text" fill="#1A1A1A">использует</text>
+  <line x1="570" y1="520" x2="1040" y2="520" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="570" y1="520" x2="570" y2="552" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="810" y1="520" x2="810" y2="552" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="1040" y1="520" x2="1040" y2="552" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g transform="translate(460,560)">
+    <rect width="220" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">repo/preview</text>
+    <text x="12" y="40" class="muted">[генератор превью]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">PNG 384×216 в base64</text>
+  </g>
+  <g transform="translate(700,560)">
+    <rect width="220" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">repo/persistent</text>
+    <text x="12" y="40" class="muted">[репозиторий]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">лимит под блокировкой сделки</text>
+  </g>
+  <g transform="translate(940,560)">
+    <rect width="200" height="72" rx="3" class="comp"/>
+    <text x="12" y="22" class="name">repo/s3</text>
+    <text x="12" y="40" class="muted">[S3-клиент]</text>
+    <text x="12" y="60" class="muted" style="fill:#1A1A1A">PutObject, Delete, presign</text>
+  </g>
+
+  <line x1="810" y1="632" x2="810" y2="722" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="798" y="694" class="text" fill="#1A1A1A" text-anchor="end">хранит метаданные</text>
+  <text x="798" y="712" class="mono" fill="#6B6B6B" text-anchor="end">[SQL]</text>
+  <line x1="1040" y1="632" x2="1040" y2="722" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1052" y="694" class="text" fill="#1A1A1A">хранит байты</text>
+  <text x="1052" y="712" class="mono" fill="#6B6B6B">[S3 API]</text>
+
+  <g transform="translate(730,730)">
+    <rect width="160" height="56" rx="4" class="store"/>
+    <text x="14" y="24" class="name" style="fill:#444">PostgreSQL</text>
+    <text x="14" y="44" class="muted">files_db</text>
+  </g>
+  <g transform="translate(960,730)">
+    <rect width="160" height="56" rx="4" class="store"/>
+    <text x="14" y="24" class="name" style="fill:#444">S3 / RustFS</text>
+    <text x="14" y="44" class="muted">бакет S3_BUCKET</text>
+  </g>
+</svg>

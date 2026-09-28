@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .tag rect { fill: #F1F1F1; } .tag text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 12px; fill: #444; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Сделка на 5 000 RUB в леджере: три транзакции по четырём счетам</text>
+  <text x="1160" y="44" class="muted" text-anchor="end">Formance, леджер payments, план счетов v2</text>
+
+  <g class="tag" transform="translate(40,80)"><rect width="160" height="40" rx="3"/><text x="14" y="25">world</text></g>
+  <text x="112" y="105" class="muted">внешний мир</text>
+
+  <line x1="120" y1="120" x2="120" y2="172" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(146,146)"><circle r="11"/><text>1</text></g>
+  <text x="164" y="151" class="text">TopUp  100,00 USDT</text>
+
+  <g transform="translate(40,180)">
+    <rect width="260" height="120" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="260" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="44" class="label">Провайдер: доступно</text>
+    <text x="14" y="66" class="mono" fill="#1A1A1A">provider:42:available</text>
+    <text x="14" y="98" class="text" fill="#2F6FE0">100,00 → 51,50 USDT</text>
+  </g>
+
+  <line x1="300" y1="230" x2="462" y2="230" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <g class="step" transform="translate(326,206)"><circle r="11"/><text>2</text></g>
+  <text x="344" y="211" class="text">Reserve</text>
+  <text x="318" y="252" class="text" fill="#2F6FE0">48,50 USDT</text>
+
+  <g transform="translate(470,180)">
+    <rect width="260" height="120" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="260" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="44" class="label">Провайдер: в резерве</text>
+    <text x="14" y="66" class="mono" fill="#1A1A1A">provider:42:reserved</text>
+    <text x="14" y="98" class="text" fill="#2F6FE0">0 → 48,50 → 0 USDT</text>
+  </g>
+
+  <g class="step" transform="translate(760,150)"><circle r="11"/><text>3</text></g>
+  <text x="778" y="155" class="text">Settle</text>
+  <path d="M730 214 H800 V175 H892" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M730 262 H800 V380 H892" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="812" y="200" class="text">47,50</text>
+  <text x="812" y="370" class="text">1,00</text>
+
+  <g transform="translate(900,110)">
+    <rect width="260" height="130" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="260" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="44" class="label">Мерчант, терминал: доступно</text>
+    <text x="14" y="66" class="mono" fill="#1A1A1A">merchant:m1:terminal:t1:</text>
+    <text x="14" y="84" class="mono" fill="#1A1A1A">available</text>
+    <text x="14" y="112" class="text" fill="#9A1FC0">+47,50 USDT</text>
+  </g>
+
+  <g transform="translate(900,320)">
+    <rect width="260" height="110" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+    <rect width="260" height="18" fill="#F6821F"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="44" class="label">Платформа: выручка</text>
+    <text x="14" y="66" class="mono" fill="#1A1A1A">platform:revenue</text>
+    <text x="14" y="94" class="text" fill="#C25E00">+1,00 USDT</text>
+  </g>
+
+  <path d="M600 300 V346 H170 V308" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#a-blue)"/>
+  <g class="step" transform="translate(206,372)"><circle r="11"/><text>4</text></g>
+  <text x="224" y="377" class="text" fill="#2F6FE0">Release вместо Settle, если сделка отменена: 48,50 USDT назад</text>
+
+  <rect x="40" y="420" width="780" height="104" class="key"/>
+  <text x="56" y="446" class="label">Каждый шаг — одна транзакция Formance</text>
+  <text x="56" y="472" class="text" fill="#C25E00">Idempotency-Key и reference транзакции — sha256 от набора проводок</text>
+  <text x="56" y="496" class="text" fill="#C25E00">Бизнес-ключ сделки лежит в metadata[reference_id]</text>
+  <text x="56" y="516" class="muted">адреса сокращены: полностью accounts:provider:42:available и т. д.</text>
+</svg>

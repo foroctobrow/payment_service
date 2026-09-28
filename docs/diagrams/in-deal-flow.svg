@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 690" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="690" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Входящий платёж: от запроса мерчанта до зачисления</text>
+
+  <g transform="translate(40,80)">
+    <rect width="150" height="150" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="75" cy="84" r="32" fill="#fff" stroke="#9A1FC0" stroke-width="2"/>
+    <circle cx="75" cy="75" r="11" fill="#9A1FC0"/><path d="M53 106 Q75 84 97 106" fill="#9A1FC0"/>
+    <text x="75" y="174" class="label" text-anchor="middle">Мерчант</text>
+  </g>
+  <g class="step" transform="translate(222,100)"><circle r="11"/><text>1</text></g>
+  <text x="242" y="105" class="mono" fill="#9A1FC0">POST /api/v1/deals</text>
+  <text x="242" y="125" class="mono" fill="#9A1FC0">direction: IN</text>
+  <text x="242" y="145" class="mono" fill="#9A1FC0">amount: "5000"</text>
+  <text x="242" y="165" class="mono" fill="#9A1FC0">currency: RUB</text>
+  <line x1="242" y1="184" x2="462" y2="184" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="470" y1="214" x2="198" y2="214" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="242" y="236" class="mono" fill="#1A1A1A">201 PENDING + paymentLink</text>
+
+  <rect x="470" y="70" width="470" height="590" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="920" y="96" class="muted" text-anchor="end">core + rate + accounting</text>
+
+  <g class="step" transform="translate(496,104)"><circle r="11"/><text>2</text></g>
+  <text x="516" y="109" class="label">Фиксируем курс</text>
+  <rect x="490" y="122" width="300" height="34" class="plate"/>
+  <text x="502" y="144" class="mono" fill="#1A1A1A">Rate.GetDealRate  RUB → USDT</text>
+
+  <g class="step" transform="translate(496,194)"><circle r="11"/><text>3</text></g>
+  <text x="516" y="199" class="label">Выбираем исполнителя</text>
+  <rect x="490" y="212" width="300" height="34" class="plate"/>
+  <text x="502" y="234" class="mono" fill="#1A1A1A">TrafficGroup → Provider | Trader</text>
+
+  <g class="step" transform="translate(496,284)"><circle r="11"/><text>4</text></g>
+  <text x="516" y="289" class="label">Резервируем его баланс</text>
+  <rect x="490" y="302" width="300" height="34" class="plate"/>
+  <text x="502" y="324" class="mono" fill="#1A1A1A">AVAILABLE → RESERVED</text>
+
+  <g class="step" transform="translate(496,394)"><circle r="11"/><text>6</text></g>
+  <text x="516" y="399" class="label">Ждём подтверждение оплаты</text>
+  <rect x="490" y="412" width="420" height="52" class="plate"/>
+  <text x="502" y="434" class="mono" fill="#1A1A1A">PaymentWaitWorkflow (Temporal)</text>
+  <text x="502" y="454" class="text" fill="#1A1A1A">ждёт сигнал payment-received или TTL</text>
+
+  <g class="step" transform="translate(496,504)"><circle r="11"/><text>7</text></g>
+  <text x="516" y="509" class="label">Зачисляем мерчанту и уведомляем</text>
+  <rect x="490" y="522" width="420" height="100" class="key"/>
+  <text x="502" y="546" class="mono" fill="#C25E00">PENDING → PAID → COMPLETED</text>
+  <text x="502" y="568" class="text" fill="#C25E00">Исполнитель: RESERVED списан</text>
+  <text x="502" y="590" class="text" fill="#C25E00">Мерчант: AVAILABLE + нетто</text>
+  <text x="502" y="612" class="text" fill="#C25E00">Платформа: REVENUE + разница</text>
+
+  <text x="1080" y="238" class="label" text-anchor="middle">Провайдер или трейдер</text>
+  <g transform="translate(1000,250)">
+    <rect width="160" height="110" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <rect x="16" y="36" width="128" height="10" fill="#FFFFFF"/><rect x="16" y="56" width="96" height="10" fill="#FFFFFF"/><rect x="16" y="76" width="112" height="10" fill="#FFFFFF"/>
+  </g>
+  <line x1="800" y1="276" x2="992" y2="276" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="812" y="268" class="text">запрос</text>
+  <line x1="1000" y1="312" x2="800" y2="312" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="812" y="332" class="text" fill="#2F6FE0">реквизит</text>
+  <path d="M1000 348 H966 V430 H918" fill="none" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="976" y="398" class="text" fill="#2F6FE0">оплачено</text>
+
+  <g transform="translate(1000,480)">
+    <rect width="160" height="110" fill="#FCE4EC" stroke="#D0305A" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#D0305A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="80" cy="62" r="28" fill="#fff" stroke="#D0305A" stroke-width="2"/>
+    <circle cx="80" cy="54" r="9" fill="#D0305A"/><path d="M61 82 Q80 62 99 82" fill="#D0305A"/>
+  </g>
+  <text x="1080" y="614" class="label" text-anchor="middle">Плательщик</text>
+  <line x1="940" y1="560" x2="992" y2="560" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(1040,436)"><circle r="11"/><text>5</text></g>
+  <line x1="1080" y1="480" x2="1080" y2="368" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="1092" y="420" class="text" fill="#D0305A">перевод</text>
+  <text x="1092" y="438" class="text" fill="#D0305A">на реквизит</text>
+
+  <g transform="translate(40,560)">
+    <rect width="150" height="90" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="12" y="46" class="mono" fill="#1A1A1A">status:</text>
+    <text x="12" y="66" class="mono" fill="#1A1A1A">COMPLETED</text>
+  </g>
+  <line x1="470" y1="600" x2="198" y2="600" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="222" y="590" class="mono" fill="#1A1A1A">webhook</text>
+  <text x="222" y="624" class="muted">X-Webhook-Token</text>
+</svg>

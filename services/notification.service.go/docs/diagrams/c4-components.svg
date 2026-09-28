@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1300 640" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 13px; fill: #1A1A1A; }
+      .verb  { font-size: 13px; fill: #1A1A1A; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .store { fill: #F1F1F1; }
+      .store-name { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; fill: #444; }
+    </style>
+  </defs>
+  <rect width="1300" height="640" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты notification.service.go</text>
+
+  <rect x="40" y="130" width="130" height="80" rx="6" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2"/>
+  <text x="54" y="162" class="name">core</text>
+  <text x="54" y="184" class="muted">[Go-сервис]</text>
+  <line x1="170" y1="158" x2="352" y2="158" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="182" y="146" class="verb">публикует статус</text>
+  <text x="182" y="176" class="muted">[JetStream]</text>
+
+  <rect x="320" y="80" width="640" height="510" rx="6" fill="none" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="340" y="106" class="name">notification.service.go</text>
+  <text x="546" y="106" class="muted">[Go-сервис]</text>
+
+  <rect x="360" y="122" width="240" height="92" class="comp"/>
+  <text x="374" y="146" class="name">controller/nats_rpc/v1</text>
+  <text x="374" y="164" class="muted">[NATS-контроллер]</text>
+  <text x="374" y="183" class="text">фильтр статусов, ключ доставки,</text>
+  <text x="374" y="201" class="text">пауза повтора, DLQ, журнал</text>
+
+  <line x1="480" y1="214" x2="480" y2="242" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="492" y="234" class="verb">передаёт событие</text>
+
+  <rect x="360" y="250" width="240" height="310" class="comp"/>
+  <text x="374" y="274" class="name">usecase/webhook</text>
+  <text x="374" y="292" class="muted">[usecase]</text>
+  <text x="374" y="314" class="text">идемпотентность,</text>
+  <text x="374" y="332" class="text">breaker на хост,</text>
+  <text x="374" y="350" class="text">решение: доставлено,</text>
+  <text x="374" y="368" class="text">повтор или отказ</text>
+
+  <line x1="600" y1="285" x2="712" y2="285" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="612" y="275" class="verb">резервирует</text>
+  <line x1="600" y1="365" x2="712" y2="365" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="612" y="355" class="verb">записывает</text>
+  <line x1="600" y1="445" x2="712" y2="445" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="612" y="435" class="verb">отправляет</text>
+  <line x1="600" y1="525" x2="712" y2="525" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="612" y="515" class="verb">публикует</text>
+
+  <rect x="720" y="250" width="200" height="70" class="comp"/>
+  <text x="734" y="273" class="name">repo/cache</text>
+  <text x="734" y="291" class="muted">[репозиторий]</text>
+  <text x="734" y="310" class="text">wh:reserve и wh:sent</text>
+
+  <rect x="720" y="330" width="200" height="70" class="comp"/>
+  <text x="734" y="353" class="name">repo/persistent</text>
+  <text x="734" y="371" class="muted">[репозиторий]</text>
+  <text x="734" y="390" class="text">webhook_deliveries</text>
+
+  <rect x="720" y="410" width="200" height="70" class="comp"/>
+  <text x="734" y="433" class="name">repo/webapi</text>
+  <text x="734" y="451" class="muted">[HTTP-клиент]</text>
+  <text x="734" y="470" class="text">POST с X-Webhook-Token</text>
+
+  <rect x="720" y="490" width="200" height="70" class="comp"/>
+  <text x="734" y="513" class="name">repo/nats</text>
+  <text x="734" y="531" class="muted">[публикатор]</text>
+  <text x="734" y="550" class="text">DeliveryResultEvent</text>
+
+  <line x1="920" y1="285" x2="1092" y2="285" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="972" y="275" class="verb">ключи доставки</text>
+  <text x="972" y="303" class="muted">[SET NX, DEL]</text>
+  <line x1="920" y1="365" x2="1092" y2="365" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="972" y="355" class="verb">попытки</text>
+  <text x="972" y="383" class="muted">[SQL]</text>
+  <line x1="920" y1="445" x2="1092" y2="445" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="972" y="435" class="verb">шлёт webhook</text>
+  <text x="972" y="463" class="muted">[HTTP POST]</text>
+  <line x1="920" y1="525" x2="1092" y2="525" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="972" y="515" class="verb">результат</text>
+  <text x="972" y="543" class="muted">[JetStream]</text>
+
+  <rect x="1100" y="262" width="160" height="46" rx="4" class="store"/>
+  <text x="1180" y="290" class="store-name" text-anchor="middle">Redis</text>
+  <rect x="1100" y="342" width="160" height="46" rx="4" class="store"/>
+  <text x="1180" y="370" class="store-name" text-anchor="middle">PostgreSQL</text>
+
+  <g transform="translate(1100,405)">
+    <rect width="160" height="80" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="14" y="50" class="label">Мерчант</text>
+    <text x="14" y="68" class="muted">notification_url</text>
+  </g>
+
+  <rect x="1100" y="502" width="160" height="46" rx="4" class="store"/>
+  <text x="1180" y="530" class="store-name" text-anchor="middle">NATS JetStream</text>
+  <text x="1180" y="570" class="muted" text-anchor="middle">оттуда читает core</text>
+</svg>

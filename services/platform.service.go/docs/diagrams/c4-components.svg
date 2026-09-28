@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 600" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .proto { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+      .ext   { fill: #E6EEFC; stroke: #2F6FE0; stroke-width: 1.5; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1440" height="600" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты platform-service</text>
+  <rect x="40" y="292" width="160" height="72" class="ext"/>
+  <text x="52" y="314" class="name">core.service.go</text>
+  <text x="52" y="332" class="muted">[Go-сервис]</text>
+  <rect x="330" y="72" width="790" height="490" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="350" y="102" class="name">platform-service</text>
+  <text x="488" y="102" class="muted">[Go-сервис]</text>
+  <line x1="200" y1="328" x2="342" y2="328" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="265" y="320" class="text" fill="#1A1A1A" text-anchor="middle">читает и меняет</text>
+  <text x="265" y="346" class="proto" text-anchor="middle">[CQRS Platform.*]</text>
+  <rect x="350" y="292" width="200" height="72" class="comp"/>
+  <text x="362" y="314" class="name">controller/nats_rpc/v1</text>
+  <text x="362" y="332" class="muted">[NATS-контроллер]</text>
+  <text x="362" y="350" class="text" fill="#1A1A1A">25 обработчиков</text>
+  <rect x="620" y="120" width="220" height="72" class="comp"/>
+  <text x="632" y="142" class="name">usecase/currency</text>
+  <text x="632" y="160" class="muted">[usecase]</text>
+  <text x="632" y="178" class="text" fill="#1A1A1A">валюты, статусы, логотипы</text>
+  <rect x="620" y="206" width="220" height="72" class="comp"/>
+  <text x="632" y="228" class="name">usecase/method</text>
+  <text x="632" y="246" class="muted">[usecase]</text>
+  <text x="632" y="264" class="text" fill="#1A1A1A">методы оплаты</text>
+  <rect x="620" y="292" width="220" height="72" class="comp"/>
+  <text x="632" y="314" class="name">usecase/bank</text>
+  <text x="632" y="332" class="muted">[usecase]</text>
+  <text x="632" y="350" class="text" fill="#1A1A1A">банки и их статусы</text>
+  <rect x="620" y="378" width="220" height="72" class="comp"/>
+  <text x="632" y="400" class="name">usecase/currency_method</text>
+  <text x="632" y="418" class="muted">[usecase]</text>
+  <text x="632" y="436" class="text" fill="#1A1A1A">пары валюта–метод</text>
+  <rect x="620" y="464" width="220" height="72" class="comp"/>
+  <text x="632" y="486" class="name">usecase/settings</text>
+  <text x="632" y="504" class="muted">[usecase]</text>
+  <text x="632" y="522" class="text" fill="#1A1A1A">настройки платформы</text>
+  <line x1="550" y1="328" x2="585" y2="328" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="585" y1="156" x2="585" y2="500" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="585" y1="156" x2="612" y2="156" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="585" y1="242" x2="612" y2="242" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="585" y1="328" x2="612" y2="328" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="585" y1="414" x2="612" y2="414" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="585" y1="500" x2="612" y2="500" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="556" y="140" class="text" fill="#1A1A1A">вызывает</text>
+  <line x1="840" y1="156" x2="870" y2="156" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="840" y1="242" x2="870" y2="242" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="840" y1="328" x2="870" y2="328" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="840" y1="414" x2="870" y2="414" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="840" y1="500" x2="870" y2="500" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="870" y1="156" x2="870" y2="500" stroke="#1A1A1A" stroke-width="1.6"/>
+  <line x1="870" y1="200" x2="892" y2="200" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="900" y="160" width="200" height="80" class="comp"/>
+  <text x="912" y="182" class="name">repo/persistent</text>
+  <text x="912" y="200" class="muted">[репозиторий]</text>
+  <text x="912" y="218" class="text" fill="#1A1A1A">PostgreSQL через sqlc</text>
+  <line x1="870" y1="328" x2="892" y2="328" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="900" y="288" width="200" height="80" class="comp"/>
+  <text x="912" y="310" class="name">repo/cache</text>
+  <text x="912" y="328" class="muted">[кеш]</text>
+  <text x="912" y="346" class="text" fill="#1A1A1A">Redis, TTL и сброс</text>
+  <line x1="870" y1="456" x2="892" y2="456" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="900" y="416" width="200" height="80" class="comp"/>
+  <text x="912" y="438" class="name">repo/events</text>
+  <text x="912" y="456" class="muted">[публикатор]</text>
+  <text x="912" y="474" class="text" fill="#1A1A1A">аудит изменений</text>
+  <text x="846" y="140" class="text" fill="#1A1A1A">использует</text>
+  <rect x="1250" y="170" width="170" height="60" rx="4" class="store"/>
+  <text x="1262" y="196" class="name" style="fill:#444">PostgreSQL</text>
+  <text x="1262" y="216" class="muted">platform_db</text>
+  <rect x="1250" y="298" width="170" height="60" rx="4" class="store"/>
+  <text x="1262" y="324" class="name" style="fill:#444">Redis</text>
+  <text x="1262" y="344" class="muted">platform:*</text>
+  <rect x="1250" y="420" width="170" height="72" class="ext"/>
+  <text x="1262" y="442" class="name">account.service.go</text>
+  <text x="1262" y="460" class="muted">[Go-сервис]</text>
+  <text x="1262" y="478" class="text" fill="#1A1A1A">журнал аудита</text>
+  <line x1="1100" y1="200" x2="1242" y2="200" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1185" y="192" class="text" fill="#1A1A1A" text-anchor="middle">хранит</text>
+  <text x="1185" y="218" class="proto" text-anchor="middle">[SQL]</text>
+  <line x1="1100" y1="328" x2="1242" y2="328" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1185" y="320" class="text" fill="#1A1A1A" text-anchor="middle">кеширует</text>
+  <text x="1185" y="346" class="proto" text-anchor="middle">[Redis]</text>
+  <line x1="1100" y1="456" x2="1242" y2="456" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1185" y="448" class="text" fill="#1A1A1A" text-anchor="middle">шлёт аудит</text>
+  <text x="1185" y="474" class="proto" text-anchor="middle">[Audit.Event]</text>
+</svg>

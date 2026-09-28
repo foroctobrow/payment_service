@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .cond  { font-size: 14px; font-weight: 600; }
+      .text  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .line { stroke: #1A1A1A; stroke-width: 1.6; fill: none; }
+    </style>
+  </defs>
+  <rect width="1200" height="700" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">JetStream-событие: повтор и DLQ</text>
+
+  <g transform="translate(40,80)">
+    <rect width="190" height="90" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+    <rect width="190" height="18" fill="#F6821F"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="50" class="name">core-service</text>
+    <text x="16" y="70" class="muted">публикует событие</text>
+  </g>
+
+  <g class="step" transform="translate(272,92)"><circle r="11"/><text>1</text></g>
+  <text x="292" y="97" class="label">PublishEvent</text>
+  <rect x="260" y="110" width="300" height="76" class="plate"/>
+  <text x="274" y="134" class="mono" fill="#1A1A1A">deals.status_changed.&lt;id&gt;</text>
+  <text x="274" y="154" class="mono" fill="#1A1A1A">Nats-Msg-Id: &lt;eventId&gt;</text>
+  <text x="274" y="174" class="mono" fill="#1A1A1A">traceparent: 00-…-01</text>
+  <line class="line" x1="568" y1="148" x2="612" y2="148" marker-end="url(#a-ink)"/>
+
+  <rect x="620" y="104" width="180" height="88" rx="4" fill="#F1F1F1"/>
+  <text x="636" y="140" class="name" style="fill:#444">DEAL_EVENTS</text>
+  <text x="636" y="162" class="muted">stream JetStream</text>
+  <line class="line" x1="800" y1="148" x2="842" y2="148" marker-end="url(#a-ink)"/>
+
+  <rect x="850" y="72" width="310" height="262" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="870" y="100" class="name">trader-service</text>
+  <text x="870" y="118" class="muted">durable trader-service-release</text>
+
+  <g class="step" transform="translate(882,146)"><circle r="11"/><text>2</text></g>
+  <text x="902" y="151" class="label">Одна реплика группы</text>
+  <rect x="870" y="164" width="130" height="54" rx="4" fill="#FFFFFF" stroke="#F6821F" stroke-width="1.5"/>
+  <text x="884" y="186" class="cond" fill="#1A1A1A">реплика A</text>
+  <text x="884" y="204" class="muted">получила</text>
+  <rect x="1012" y="164" width="128" height="54" rx="4" fill="#FFFFFF" stroke="#C8C8C8" stroke-width="1.5"/>
+  <text x="1026" y="186" class="cond" fill="#6B6B6B">реплика B</text>
+  <text x="1026" y="204" class="muted">не получила</text>
+
+  <g class="step" transform="translate(882,242)"><circle r="11"/><text>3</text></g>
+  <text x="902" y="247" class="label">Обработчик</text>
+  <rect x="870" y="260" width="270" height="56" class="plate"/>
+  <text x="884" y="282" class="mono" fill="#1A1A1A">DeliveryAttempt(ctx) = 1</text>
+  <text x="884" y="304" class="text" fill="#1A1A1A">ctx продолжает трассу продюсера</text>
+
+  <g class="step" transform="translate(64,350)"><circle r="11"/><text>4</text></g>
+  <text x="84" y="355" class="label">Итог обработки</text>
+  <line class="line" x1="1005" y1="334" x2="1005" y2="376"/>
+  <line class="line" x1="170" y1="376" x2="1040" y2="376"/>
+  <line class="line" x1="170" y1="376" x2="170" y2="414" marker-end="url(#a-ink)"/>
+  <line class="line" x1="460" y1="376" x2="460" y2="414" marker-end="url(#a-ink)"/>
+  <line class="line" x1="750" y1="376" x2="750" y2="414" marker-end="url(#a-ink)"/>
+  <line class="line" x1="1040" y1="376" x2="1040" y2="414" marker-end="url(#a-ink)"/>
+
+  <rect x="40" y="420" width="260" height="100" class="plate"/>
+  <text x="54" y="446" class="cond" fill="#1A1A1A">Обработчик вернул nil</text>
+  <text x="54" y="472" class="mono" fill="#1A1A1A">Ack()</text>
+  <text x="54" y="498" class="muted">сообщение подтверждено</text>
+
+  <rect x="330" y="420" width="260" height="100" class="plate"/>
+  <text x="344" y="446" class="cond" fill="#1A1A1A">Ошибка с RetryDelay()</text>
+  <text x="344" y="472" class="mono" fill="#1A1A1A">NakWithDelay(d)</text>
+  <text x="344" y="498" class="muted">повтор не раньше чем через d</text>
+
+  <rect x="620" y="420" width="260" height="100" class="plate"/>
+  <text x="634" y="446" class="cond" fill="#1A1A1A">Любая другая ошибка</text>
+  <text x="634" y="472" class="mono" fill="#1A1A1A">Nak()</text>
+  <text x="634" y="498" class="muted">повтор сразу, без паузы</text>
+
+  <rect x="910" y="420" width="250" height="100" class="plate"/>
+  <text x="924" y="446" class="cond" fill="#1A1A1A">Нет ответа за AckWait</text>
+  <text x="924" y="472" class="mono" fill="#1A1A1A">AckWait: 30s</text>
+  <text x="924" y="498" class="muted">сервер доставит сообщение снова</text>
+
+  <line class="line" x1="460" y1="520" x2="460" y2="552"/>
+  <line class="line" x1="750" y1="520" x2="750" y2="552"/>
+  <line class="line" x1="1040" y1="520" x2="1040" y2="552"/>
+  <line class="line" x1="460" y1="552" x2="1040" y2="552"/>
+  <line class="line" x1="535" y1="552" x2="535" y2="582" marker-end="url(#a-ink)"/>
+  <line class="line" x1="965" y1="552" x2="965" y2="582" marker-end="url(#a-ink)"/>
+
+  <g class="step" transform="translate(64,612)"><circle r="11"/><text>5</text></g>
+  <text x="84" y="617" class="label">Повтор или DLQ</text>
+
+  <rect x="330" y="588" width="410" height="90" class="plate"/>
+  <text x="344" y="614" class="cond" fill="#1A1A1A">Попытки ещё есть</text>
+  <text x="344" y="640" class="mono" fill="#1A1A1A">DeliveryAttempt(ctx) = 2, 3, …</text>
+  <text x="344" y="664" class="muted">сообщение снова приходит одной из реплик</text>
+
+  <rect x="760" y="588" width="400" height="90" class="key"/>
+  <text x="774" y="614" class="cond" fill="#C25E00">Неудачна попытка MaxAttempts + 1</text>
+  <text x="774" y="640" class="mono" fill="#C25E00">publish DLQSubject, Term()</text>
+  <text x="774" y="664" class="muted">без DLQSubject: Term() и запись в лог</text>
+</svg>

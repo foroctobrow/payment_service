@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 680" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1000" height="680" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Первый вход: токен, настройка TOTP, сессия</text>
+
+  <g transform="translate(40,80)">
+    <rect width="150" height="530" fill="#F1F1F1" stroke="#1A1A1A" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#1A1A1A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="62" class="name">core</text>
+    <text x="16" y="84" class="muted">admin-api</text>
+    <text x="16" y="100" class="muted">между админкой</text>
+    <text x="16" y="116" class="muted">и account</text>
+  </g>
+
+  <rect x="470" y="70" width="490" height="540" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="940" y="96" class="muted" text-anchor="end">account-service</text>
+
+  <text x="222" y="118" class="mono" fill="#1A1A1A">Auth.Login</text>
+  <text x="222" y="138" class="mono" fill="#1A1A1A">authToken</text>
+  <line x1="222" y1="152" x2="462" y2="152" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(496,114)"><circle r="11"/><text>1</text></g>
+  <text x="516" y="119" class="label">Находим активного пользователя по токену</text>
+  <rect x="490" y="132" width="450" height="52" class="plate"/>
+  <text x="502" y="154" class="mono" fill="#1A1A1A">WHERE auth_token_prefix = token[:10]</text>
+  <text x="502" y="174" class="mono" fill="#1A1A1A">sha256(token) = auth_token_hash</text>
+
+  <g class="step" transform="translate(496,214)"><circle r="11"/><text>2</text></g>
+  <text x="516" y="219" class="label">2FA ещё нет: отдаём новый секрет</text>
+  <rect x="490" y="232" width="450" height="34" class="plate"/>
+  <text x="502" y="254" class="mono" fill="#1A1A1A">setupToken = JWT(uid, totp), 10 мин</text>
+  <line x1="470" y1="250" x2="198" y2="250" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="222" y="240" class="mono" fill="#1A1A1A">twoFactorSetup</text>
+  <text x="222" y="272" class="muted">setupToken, qrImage, manualKey</text>
+
+  <text x="222" y="318" class="mono" fill="#1A1A1A">Auth.Confirm2FA</text>
+  <text x="222" y="338" class="mono" fill="#1A1A1A">setupToken, totpCode</text>
+  <line x1="222" y1="352" x2="462" y2="352" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(496,314)"><circle r="11"/><text>3</text></g>
+  <text x="516" y="319" class="label">Сохраняем секрет и открываем сессию</text>
+  <rect x="490" y="332" width="450" height="52" class="plate"/>
+  <text x="502" y="354" class="mono" fill="#1A1A1A">totp_secrets ← AES-256-GCM(secret)</text>
+  <text x="502" y="374" class="mono" fill="#1A1A1A">sessions ← sha256(refreshToken)</text>
+
+  <g class="step" transform="translate(496,414)"><circle r="11"/><text>4</text></g>
+  <text x="516" y="419" class="label">Выпускаем токены</text>
+  <rect x="490" y="432" width="450" height="52" class="key"/>
+  <text x="502" y="454" class="mono" fill="#C25E00">accessToken: JWT HS256, 15 мин</text>
+  <text x="502" y="474" class="mono" fill="#C25E00">refreshToken: 32 байта, 168 ч</text>
+  <line x1="470" y1="450" x2="198" y2="450" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="222" y="440" class="mono" fill="#1A1A1A">tokens</text>
+  <text x="222" y="472" class="muted">accessToken, refreshToken, sessionId</text>
+
+  <text x="222" y="538" class="mono" fill="#1A1A1A">Internal.ValidateSession</text>
+  <text x="222" y="556" class="muted">на каждый запрос админки</text>
+  <line x1="222" y1="568" x2="462" y2="568" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <g class="step" transform="translate(496,524)"><circle r="11"/><text>5</text></g>
+  <text x="516" y="529" class="label">Проверяем, что сессия жива</text>
+  <rect x="490" y="542" width="450" height="34" class="plate"/>
+  <text x="502" y="564" class="mono" fill="#1A1A1A">revoked_at IS NULL AND expires_at &gt; now()</text>
+  <text x="40" y="652" class="muted">Со второго входа Auth.Login сразу ждёт totpCode: не больше 5 попыток за 15 мин, дальше RATE_LIMITED</text>
+</svg>

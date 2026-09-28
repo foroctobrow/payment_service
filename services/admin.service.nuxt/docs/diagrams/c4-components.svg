@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1420 680" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#9A1FC0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 13px; }
+      .verb  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .proto { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1420" height="680" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты admin.service.nuxt</text>
+  <g transform="translate(30,110)">
+    <rect width="140" height="190" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2.5"/>
+    <rect width="140" height="18" fill="#1A1A1A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="70.0" cy="62" r="24" fill="#fff" stroke="#1A1A1A" stroke-width="2"/>
+    <circle cx="70.0" cy="55" r="8" fill="#1A1A1A"/><path d="M54.0 80 Q70.0 62 86.0 80" fill="#1A1A1A"/>
+    <text x="70.0" y="112" class="label" text-anchor="middle">Оператор,</text>
+    <text x="70.0" y="131" class="label" text-anchor="middle">мерчант,</text>
+    <text x="70.0" y="150" class="label" text-anchor="middle">провайдер</text>
+  </g>
+  <rect x="240" y="70" width="890" height="580" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="260" y="98" class="name">admin.service.nuxt</text>
+  <text x="416" y="98" class="muted">[Nuxt-приложение]</text>
+  <rect x="270" y="120" width="200" height="84" rx="4" class="comp"/>
+  <text x="284" y="146" class="name">pages/(кабинет)</text>
+  <text x="284" y="166" class="muted">[страницы]</text>
+  <text x="284" y="188" class="text" fill="#1A1A1A">кабинеты по ролям</text>
+  <rect x="580" y="120" width="200" height="84" rx="4" class="comp"/>
+  <text x="594" y="146" class="name">use*Page</text>
+  <text x="594" y="166" class="muted">[композаблы страниц]</text>
+  <text x="594" y="188" class="text" fill="#1A1A1A">фильтры, диалоги, тосты</text>
+  <rect x="910" y="120" width="200" height="84" rx="4" class="comp"/>
+  <text x="924" y="146" class="name">useDeals и др.</text>
+  <text x="924" y="166" class="muted">[композаблы данных]</text>
+  <text x="924" y="188" class="text" fill="#1A1A1A">vue-query, опрос 5 с</text>
+  <rect x="270" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="284" y="326" class="name">useAuthEndpoints</text>
+  <text x="284" y="346" class="muted">[композабл]</text>
+  <text x="284" y="368" class="text" fill="#1A1A1A">вход, 2FA, выход</text>
+  <rect x="580" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="594" y="326" class="name">useAuthFetch</text>
+  <text x="594" y="346" class="muted">[API-клиент]</text>
+  <text x="594" y="368" class="text" fill="#1A1A1A">CSRF, выход после 401</text>
+  <rect x="910" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="924" y="326" class="name">files-service.ts</text>
+  <text x="924" y="346" class="muted">[API-клиент]</text>
+  <text x="924" y="368" class="text" fill="#1A1A1A">X-Service-Token</text>
+  <rect x="270" y="480" width="200" height="84" rx="4" class="comp"/>
+  <text x="284" y="506" class="name">server/api/auth</text>
+  <text x="284" y="526" class="muted">[server-роуты Nuxt]</text>
+  <text x="284" y="548" class="text" fill="#1A1A1A">пишут cookie-сессию</text>
+  <rect x="580" y="480" width="200" height="84" rx="4" class="comp"/>
+  <text x="594" y="506" class="name">server/api/*</text>
+  <text x="594" y="526" class="muted">[server-роуты Nuxt]</text>
+  <text x="594" y="548" class="text" fill="#1A1A1A">170 файлов, zod</text>
+  <rect x="910" y="480" width="200" height="84" rx="4" class="comp"/>
+  <text x="924" y="506" class="name">auth-fetch.ts</text>
+  <text x="924" y="526" class="muted">[API-клиент]</text>
+  <text x="924" y="548" class="text" fill="#1A1A1A">Bearer, refresh, повтор</text>
+  <rect x="1250" y="300" width="140" height="84" rx="4" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="1.5"/>
+  <text x="1264" y="334" class="name">files-service</text>
+  <text x="1264" y="356" class="muted">files.service.go</text>
+  <rect x="1250" y="440" width="140" height="124" rx="4" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="1.5"/>
+  <text x="1264" y="474" class="name">admin-api</text>
+  <text x="1264" y="496" class="muted">core.service.go</text>
+  <line x1="170" y1="162" x2="262" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="176" y="152" class="verb" fill="#1A1A1A">входит</text>
+  <text x="176" y="182" class="proto">[HTTPS]</text>
+  <line x1="470" y1="162" x2="572" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="482" y="152" class="verb" fill="#1A1A1A">собирает</text>
+  <text x="482" y="182" class="proto">[вызов]</text>
+  <line x1="780" y1="162" x2="902" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="792" y="152" class="verb" fill="#1A1A1A">читает</text>
+  <text x="792" y="182" class="proto">[вызов]</text>
+  <path d="M960 204 V250 H700 V292" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="720" y="240" class="verb" fill="#1A1A1A">запрашивает</text>
+  <text x="720" y="268" class="proto">[вызов]</text>
+  <line x1="370" y1="204" x2="370" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="382" y="244" class="verb" fill="#1A1A1A">логин</text>
+  <text x="382" y="262" class="proto">[вызов]</text>
+  <line x1="370" y1="384" x2="370" y2="472" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="382" y="424" class="verb" fill="#1A1A1A">шлёт токен и TOTP</text>
+  <text x="382" y="442" class="proto">[HTTP POST /api/auth/*]</text>
+  <line x1="620" y1="384" x2="620" y2="472" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="632" y="424" class="verb" fill="#1A1A1A">шлёт cookie</text>
+  <text x="632" y="442" class="proto">[HTTP /api/*]</text>
+  <path d="M740 480 V454 H1010 V392" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="800" y="446" class="verb" fill="#1A1A1A">вложения спора</text>
+  <text x="800" y="476" class="proto">[вызов]</text>
+  <line x1="1110" y1="342" x2="1242" y2="342" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1138" y="332" class="verb" fill="#1A1A1A">ищет файлы</text>
+  <text x="1138" y="362" class="proto">[HTTP /v1/files]</text>
+  <line x1="780" y1="522" x2="902" y2="522" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="792" y="512" class="verb" fill="#1A1A1A">вызывает</text>
+  <text x="792" y="542" class="proto">[вызов]</text>
+  <line x1="1110" y1="522" x2="1242" y2="522" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1138" y="512" class="verb" fill="#1A1A1A">пересылает</text>
+  <text x="1138" y="542" class="proto">[HTTP + Bearer]</text>
+  <path d="M370 564 V610 H1320 V572" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="400" y="600" class="verb" fill="#1A1A1A">входит</text>
+  <text x="400" y="630" class="proto">[HTTP /auth/login, /auth/2fa/confirm]</text>
+</svg>

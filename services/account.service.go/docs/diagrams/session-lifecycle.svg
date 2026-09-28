@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .state rect { fill: #FFF6EA; stroke: #F6821F; stroke-width: 2; }
+      .state text { font-size: 15px; font-weight: 600; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .final rect { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1000" height="320" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Когда сессия перестаёт работать</text>
+
+  <text x="40" y="182" class="mono" fill="#1A1A1A">Confirm2FA</text>
+  <text x="40" y="200" class="mono" fill="#1A1A1A">Login</text>
+  <line x1="136" y1="186" x2="222" y2="186" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <g class="state" transform="translate(230,164)"><rect width="140" height="44" rx="6"/><text x="70" y="22">активна</text></g>
+  <path d="M270 164 C270 108 330 108 330 158" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="300" y="82" class="mono" fill="#1A1A1A" text-anchor="middle">Auth.Refresh</text>
+  <text x="300" y="100" class="muted" text-anchor="middle">новый refreshToken, +168 ч</text>
+
+  <g class="state final" transform="translate(560,100)"><rect width="140" height="44" rx="6"/><text x="70" y="22">отозвана</text></g>
+  <g class="state final" transform="translate(560,240)"><rect width="140" height="44" rx="6"/><text x="70" y="22">истекла</text></g>
+  <g class="state" transform="translate(830,240)"><rect width="140" height="44" rx="6"/><text x="70" y="22">удалена</text></g>
+
+  <path d="M370 176 L552 128" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <path d="M370 198 L552 256" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="480" y="276" class="muted" text-anchor="middle">expires_at прошёл</text>
+  <line x1="700" y1="262" x2="822" y2="262" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="761" y="250" class="muted" text-anchor="middle">раз в 1 ч</text>
+
+  <text x="716" y="100" class="muted">Logout, LogoutByRefresh, LogoutAll</text>
+  <text x="716" y="116" class="muted">Sessions.Revoke, Sessions.RevokeAll</text>
+  <text x="716" y="132" class="muted">idle_timeout: 168 ч без refresh</text>
+  <text x="716" y="148" class="muted">Users.Suspend, Users.Delete</text>
+  <text x="716" y="164" class="muted">Users.RegenerateToken</text>
+
+</svg>

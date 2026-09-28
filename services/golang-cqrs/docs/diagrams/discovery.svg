@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 730" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="730" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Как узлы узнают друг о друге</text>
+
+  <g transform="translate(120,72)">
+    <rect width="220" height="70" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+    <rect width="220" height="18" fill="#F6821F"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="44" class="name">core-service</text>
+    <text x="16" y="62" class="muted">узел A, работает давно</text>
+  </g>
+  <g transform="translate(860,72)">
+    <rect width="220" height="70" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+    <rect width="220" height="18" fill="#F6821F"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="44" class="name">platform-service</text>
+    <text x="16" y="62" class="muted">узел B, только что запустился</text>
+  </g>
+
+  <line x1="230" y1="142" x2="230" y2="610" stroke="#C8C8C8" stroke-width="1.6" stroke-dasharray="6 6"/>
+  <line x1="970" y1="142" x2="970" y2="610" stroke="#C8C8C8" stroke-width="1.6" stroke-dasharray="6 6"/>
+
+  <g class="step" transform="translate(430,176)"><circle r="11"/><text>1</text></g>
+  <text x="450" y="181" class="label">B объявляет себя всем</text>
+  <text x="600" y="206" class="mono" fill="#1A1A1A" text-anchor="middle">$SYS.SDP → $CQRS.pay.broadcasts.commands</text>
+  <text x="600" y="226" class="muted" text-anchor="middle">внутри: id узла и список его Command и Query</text>
+  <line x1="962" y1="244" x2="238" y2="244" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="40" y="224" width="170" height="40" class="plate"/>
+  <text x="52" y="249" class="text" fill="#1A1A1A">A запомнил B</text>
+
+  <g class="step" transform="translate(430,294)"><circle r="11"/><text>2</text></g>
+  <text x="450" y="299" class="label">Раз в 10 секунд каждый шлёт PING</text>
+  <text x="600" y="324" class="mono" fill="#1A1A1A" text-anchor="middle">$SYS.PING</text>
+  <line x1="238" y1="340" x2="962" y2="340" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="990" y="320" width="170" height="40" class="plate"/>
+  <text x="1002" y="345" class="text" fill="#1A1A1A">A ещё не знаком</text>
+
+  <g class="step" transform="translate(430,390)"><circle r="11"/><text>3</text></g>
+  <text x="450" y="395" class="label">B спрашивает A напрямую</text>
+  <text x="600" y="420" class="mono" fill="#1A1A1A" text-anchor="middle">$SYS.GETSDP → $CQRS.pay.&lt;id A&gt;.queries</text>
+  <line x1="962" y1="436" x2="238" y2="436" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="600" y="462" class="muted" text-anchor="middle">ответ: список обработчиков A</text>
+  <line x1="238" y1="476" x2="962" y2="476" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="990" y="456" width="170" height="40" class="plate"/>
+  <text x="1002" y="481" class="text" fill="#1A1A1A">B запомнил A</text>
+
+  <g class="step" transform="translate(430,530)"><circle r="11"/><text>4</text></g>
+  <text x="450" y="535" class="label">B перезапустился с тем же id</text>
+  <text x="600" y="560" class="mono" fill="#1A1A1A" text-anchor="middle">$SYS.PING, runnedAt: новое время старта</text>
+  <line x1="962" y1="576" x2="238" y2="576" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <rect x="40" y="552" width="170" height="58" class="plate"/>
+  <text x="52" y="576" class="text" fill="#1A1A1A">runnedAt другой:</text>
+  <text x="52" y="598" class="text" fill="#1A1A1A">A повторяет шаг 3</text>
+
+  <g class="step" transform="translate(430,650)"><circle r="11"/><text>5</text></g>
+  <text x="450" y="655" class="label">B замолчал</text>
+  <rect x="40" y="636" width="360" height="72" class="key"/>
+  <text x="52" y="664" class="text" fill="#C25E00">2 проверки подряд без PING дольше 10,5 с:</text>
+  <text x="52" y="688" class="text" fill="#C25E00">A удаляет B через 20–30 с</text>
+</svg>

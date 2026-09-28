@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .tag rect { fill: #F1F1F1; } .tag text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #444; }
+    </style>
+  </defs>
+  <rect width="1200" height="640" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Как виджет получает реквизит и следит за сделкой</text>
+
+  <g transform="translate(40,80)">
+    <rect width="170" height="520" fill="#FCE4EC" stroke="#D0305A" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#D0305A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="85" cy="70" r="28" fill="#fff" stroke="#D0305A" stroke-width="2"/>
+    <circle cx="85" cy="62" r="9" fill="#D0305A"/><path d="M66 90 Q85 70 104 90" fill="#D0305A"/>
+    <text x="85" y="128" class="label" text-anchor="middle">Браузер</text>
+    <text x="85" y="147" class="label" text-anchor="middle">плательщика</text>
+    <g class="step" transform="translate(26,292)"><circle r="11"/><text>3</text></g>
+    <text x="44" y="297" class="label">Расшифровка</text>
+    <rect x="14" y="312" width="142" height="54" class="key"/>
+    <text x="26" y="334" class="mono" fill="#C25E00">ECDH P-256</text>
+    <text x="26" y="354" class="mono" fill="#C25E00">AES-GCM-256</text>
+    <text x="85" y="392" class="muted" text-anchor="middle">ключ живёт только</text>
+    <text x="85" y="408" class="muted" text-anchor="middle">в памяти вкладки</text>
+  </g>
+
+  <rect x="340" y="70" width="450" height="540" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="770" y="96" class="muted" text-anchor="end">widget.service.nuxt · Nitro</text>
+
+  <g class="step" transform="translate(366,122)"><circle r="11"/><text>1</text></g>
+  <text x="386" y="127" class="label">Отпечаток устройства и ключ</text>
+  <rect x="360" y="140" width="410" height="54" class="plate"/>
+  <text x="372" y="161" class="mono" fill="#1A1A1A">POST /api/v1/payment-widgets/:key</text>
+  <text x="372" y="183" class="text" fill="#1A1A1A">cf-bot-score &lt; 10 → 403, добавляем cf-*</text>
+
+  <g class="step" transform="translate(366,262)"><circle r="11"/><text>2</text></g>
+  <text x="372" y="220" class="muted">IP плательщика передаётся в core (CF-Connecting-IP)</text>
+  <text x="386" y="267" class="label">Опрос каждые 3000 мс</text>
+  <rect x="360" y="280" width="410" height="54" class="plate"/>
+  <text x="372" y="301" class="mono" fill="#1A1A1A">GET /api/v1/payment-widgets/:key</text>
+  <text x="372" y="323" class="mono" fill="#1A1A1A">X-Session-Token: &lt;token&gt;</text>
+
+  <text x="372" y="384" class="text" fill="#1A1A1A">финальное состояние → опрос останавливается</text>
+  <text x="372" y="408" class="text" fill="#1A1A1A">нет токена или ошибка → повтор 1, 2, 4 … 30 с</text>
+
+  <g class="step" transform="translate(366,482)"><circle r="11"/><text>4</text></g>
+  <text x="386" y="487" class="label">Отмена</text>
+  <rect x="360" y="500" width="410" height="54" class="plate"/>
+  <text x="372" y="521" class="mono" fill="#1A1A1A">POST …/:key/cancel</text>
+  <text x="372" y="543" class="text" fill="#1A1A1A">сделка → CANCELED, причина BY_MERCHANT</text>
+
+  <text x="224" y="136" class="mono" fill="#D0305A">page_load</text>
+  <line x1="210" y1="152" x2="332" y2="152" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <line x1="340" y1="180" x2="218" y2="180" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="244" y="200" class="muted">sessionToken</text>
+
+  <line x1="210" y1="292" x2="332" y2="292" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <line x1="340" y1="320" x2="218" y2="320" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="244" y="340" class="muted">шифротекст</text>
+
+  <line x1="210" y1="512" x2="332" y2="512" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <line x1="340" y1="540" x2="218" y2="540" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="244" y="560" class="mono" fill="#1A1A1A">canceled</text>
+
+  <text x="798" y="138" class="mono" fill="#1A1A1A">/telemetry</text>
+  <line x1="790" y1="152" x2="892" y2="152" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="900" y1="180" x2="798" y2="180" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="790" y1="292" x2="892" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="900" y1="320" x2="798" y2="320" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="790" y1="512" x2="892" y2="512" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="900" y1="540" x2="798" y2="540" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+
+  <rect x="900" y="70" width="260" height="540" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="920" y="100" class="name">merchant-api</text>
+  <text x="920" y="120" class="muted">core.service.go</text>
+  <text x="920" y="232" class="text" fill="#1A1A1A">выдаёт токен сессии</text>
+  <text x="920" y="252" class="text" fill="#1A1A1A">на время жизни ссылки</text>
+  <text x="920" y="372" class="text" fill="#1A1A1A">шифрует реквизит</text>
+  <text x="920" y="392" class="text" fill="#1A1A1A">под publicKey вкладки</text>
+  <g class="tag" transform="translate(920,420)"><rect width="200" height="22" rx="3"/><text x="8" y="15">Redis payment_widget:*</text></g>
+  <g class="tag" transform="translate(920,450)"><rect width="200" height="22" rx="3"/><text x="8" y="15">Redis widget_st:*</text></g>
+  <text x="920" y="590" class="muted">120 запросов в минуту на IP</text>
+</svg>

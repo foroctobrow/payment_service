@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 380" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="380" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">За какой день сделка попадает в сводку</text>
+
+  <text x="400" y="92" class="label" text-anchor="middle">пн</text>
+  <text x="580" y="92" class="label" text-anchor="middle">вт</text>
+  <text x="760" y="92" class="label" text-anchor="middle">ср</text>
+  <text x="940" y="92" class="label" text-anchor="middle">чт</text>
+
+  <text x="40" y="156" class="label">Без спора</text>
+  <text x="40" y="176" class="muted">день берётся из created_at</text>
+  <line x1="400" y1="160" x2="580" y2="160" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="400" cy="160" r="8" fill="#F6821F"/>
+  <circle cx="580" cy="160" r="6" fill="#1A1A1A"/>
+  <text x="400" y="190" class="mono" fill="#1A1A1A" text-anchor="middle">NEW</text>
+  <text x="580" y="190" class="mono" fill="#1A1A1A" text-anchor="middle">COMPLETED</text>
+  <rect x="335" y="202" width="130" height="26" class="key"/>
+  <text x="400" y="220" class="text" fill="#C25E00" text-anchor="middle">в сводку за пн</text>
+
+  <text x="40" y="276" class="label">Спор закрыт</text>
+  <text x="40" y="296" class="muted">день берётся из updated_at</text>
+  <line x1="400" y1="280" x2="940" y2="280" stroke="#1A1A1A" stroke-width="1.6"/>
+  <circle cx="400" cy="280" r="6" fill="#1A1A1A"/>
+  <circle cx="580" cy="280" r="6" fill="#1A1A1A"/>
+  <circle cx="760" cy="280" r="6" fill="#1A1A1A"/>
+  <circle cx="940" cy="280" r="8" fill="#F6821F"/>
+  <text x="400" y="310" class="mono" fill="#1A1A1A" text-anchor="middle">NEW</text>
+  <text x="580" y="310" class="mono" fill="#1A1A1A" text-anchor="middle">CANCELED</text>
+  <text x="760" y="310" class="mono" fill="#1A1A1A" text-anchor="middle">DISPUTE</text>
+  <text x="940" y="310" class="mono" fill="#1A1A1A" text-anchor="middle">COMPLETED</text>
+  <text x="850" y="266" class="muted" text-anchor="middle">открытый спор виден в любом периоде</text>
+  <rect x="875" y="322" width="130" height="26" class="key"/>
+  <text x="940" y="340" class="text" fill="#C25E00" text-anchor="middle">в сводку за чт</text>
+</svg>

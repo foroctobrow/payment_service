@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1350 620" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-purple" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#9A1FC0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 13px; }
+      .verb  { font-size: 13px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .proto { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #6B6B6B; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; font-weight: 700; fill: #1A1A1A; }
+      .comp  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1350" height="620" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Компоненты widget.service.nuxt</text>
+  <g transform="translate(30,120)">
+    <rect width="140" height="150" fill="#FCE4EC" stroke="#D0305A" stroke-width="2.5"/>
+    <rect width="140" height="18" fill="#D0305A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="70.0" cy="62" r="24" fill="#fff" stroke="#D0305A" stroke-width="2"/>
+    <circle cx="70.0" cy="55" r="8" fill="#D0305A"/><path d="M54.0 80 Q70.0 62 86.0 80" fill="#D0305A"/>
+    <text x="70.0" y="112" class="label" text-anchor="middle">Плательщик</text>
+  </g>
+  <rect x="240" y="70" width="890" height="530" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="260" y="98" class="name">widget.service.nuxt</text>
+  <text x="424" y="98" class="muted">[Nuxt-приложение]</text>
+  <rect x="560" y="120" width="200" height="84" rx="4" class="comp"/>
+  <text x="574" y="146" class="name">pages/[key].vue</text>
+  <text x="574" y="166" class="muted">[страница]</text>
+  <text x="574" y="188" class="text" fill="#1A1A1A">связывает всё на экране</text>
+  <rect x="900" y="120" width="200" height="84" rx="4" class="comp"/>
+  <text x="914" y="146" class="name">utils/payment.ts</text>
+  <text x="914" y="166" class="muted">[DOM-рендер]</text>
+  <text x="914" y="188" class="text" fill="#1A1A1A">подписи по type, таймер</text>
+  <rect x="270" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="284" y="326" class="name">useWidgetTelemetry</text>
+  <text x="284" y="346" class="muted">[композабл]</text>
+  <text x="284" y="368" class="text" fill="#1A1A1A">отпечаток, sessionToken</text>
+  <rect x="560" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="574" y="326" class="name">usePaymentWidget</text>
+  <text x="574" y="346" class="muted">[композабл]</text>
+  <text x="574" y="368" class="text" fill="#1A1A1A">опрос раз в 3 с, паузы</text>
+  <rect x="900" y="300" width="200" height="84" rx="4" class="comp"/>
+  <text x="914" y="326" class="name">widget-crypto</text>
+  <text x="914" y="346" class="muted">[утилита]</text>
+  <text x="914" y="368" class="text" fill="#1A1A1A">ECDH P-256, AES-GCM</text>
+  <rect x="560" y="480" width="200" height="84" rx="4" class="comp"/>
+  <text x="574" y="506" class="name">payment-widgets/*</text>
+  <text x="574" y="526" class="muted">[server-роуты Nuxt]</text>
+  <text x="574" y="548" class="text" fill="#1A1A1A">GET, POST, cancel</text>
+  <rect x="900" y="480" width="200" height="84" rx="4" class="comp"/>
+  <text x="914" y="506" class="name">payment-widget-api</text>
+  <text x="914" y="526" class="muted">[API-клиент]</text>
+  <text x="914" y="548" class="text" fill="#1A1A1A">5 с, IP в CF-Connecting-IP</text>
+  <rect x="1210" y="480" width="120" height="84" rx="4" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="1.5"/>
+  <text x="1224" y="514" class="name">merchant-api</text>
+  <text x="1224" y="536" class="muted">core.service.go</text>
+  <line x1="170" y1="162" x2="552" y2="162" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="262" y="152" class="verb" fill="#D0305A">открывает ссылку</text>
+  <text x="262" y="182" class="proto">[HTTPS]</text>
+  <line x1="760" y1="162" x2="892" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="774" y="152" class="verb" fill="#1A1A1A">рисует</text>
+  <text x="774" y="182" class="proto">[DOM]</text>
+  <path d="M600 204 V250 H370 V292" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="390" y="240" class="verb" fill="#1A1A1A">шлёт page_load</text>
+  <text x="390" y="270" class="proto">[вызов]</text>
+  <line x1="700" y1="204" x2="700" y2="292" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="712" y="244.0" class="verb" fill="#1A1A1A">берёт состояние</text>
+  <text x="712" y="262.0" class="proto">[вызов]</text>
+  <line x1="760" y1="342" x2="892" y2="342" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="774" y="332" class="verb" fill="#1A1A1A">расшифровывает</text>
+  <text x="774" y="362" class="proto">[WebCrypto]</text>
+  <line x1="660" y1="384" x2="660" y2="472" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="672" y="424.0" class="verb" fill="#1A1A1A">запрашивает</text>
+  <text x="672" y="442.0" class="proto">[HTTP GET, POST cancel]</text>
+  <path d="M370 384 V522 H552" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="390" y="512" class="verb" fill="#1A1A1A">шлёт телеметрию</text>
+  <text x="390" y="542" class="proto">[HTTP POST]</text>
+  <line x1="760" y1="522" x2="892" y2="522" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="774" y="512" class="verb" fill="#1A1A1A">вызывает</text>
+  <text x="774" y="542" class="proto">[вызов]</text>
+  <line x1="1100" y1="522" x2="1202" y2="522" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="1142" y="512" class="verb" fill="#1A1A1A">шлёт</text>
+  <text x="1142" y="542" class="proto">[HTTP]</text>
+</svg>

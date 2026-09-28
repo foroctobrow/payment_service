@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 310" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+      .store { fill: #F1F1F1; }
+    </style>
+  </defs>
+  <rect width="1200" height="310" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Что происходит с загруженным файлом</text>
+
+  <rect x="60" y="100" width="240" height="100" rx="4" class="plate"/>
+  <text x="76" y="130" class="label">Загружен</text>
+  <text x="76" y="156" class="mono" fill="#1A1A1A">confirmed_at = NULL</text>
+  <text x="76" y="180" class="muted">спора ещё нет</text>
+
+  <rect x="480" y="100" width="240" height="100" rx="4" class="key"/>
+  <text x="496" y="130" class="label">Подтверждён</text>
+  <text x="496" y="156" class="mono" fill="#C25E00">confirmed_at = now()</text>
+  <text x="496" y="180" class="muted">привязан к открытому спору</text>
+
+  <rect x="900" y="100" width="240" height="100" rx="4" class="store"/>
+  <text x="916" y="130" class="label">Удалён</text>
+  <text x="916" y="156" class="mono" fill="#444">deleted_at, deleted_by</text>
+  <text x="916" y="180" class="muted">объект убран из бакета</text>
+
+  <line x1="300" y1="150" x2="472" y2="150" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="390" y="116" class="mono" fill="#1A1A1A" text-anchor="middle">Files.Confirm</text>
+  <text x="390" y="136" class="muted" text-anchor="middle">спор открыт</text>
+
+  <line x1="720" y1="150" x2="892" y2="150" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="810" y="116" class="mono" fill="#1A1A1A" text-anchor="middle">Files.Delete</text>
+  <text x="810" y="136" class="muted" text-anchor="middle">DELETE /v1/files/:key</text>
+
+  <path d="M180 200 V270 H1020 V208" fill="none" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="200" y="236" class="mono" fill="#1A1A1A">Files.Cleanup</text>
+  <text x="318" y="236" class="text" fill="#1A1A1A">спор не открылся</text>
+  <text x="200" y="256" class="text" fill="#1A1A1A">или фоновая задача: без подтверждения дольше 2 ч, проход раз в час, до 500 файлов</text>
+</svg>

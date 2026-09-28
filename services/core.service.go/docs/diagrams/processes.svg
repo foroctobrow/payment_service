@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-orange" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#F6821F" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .card  { fill: #FFFFFF; stroke: #F6821F; stroke-width: 1.5; }
+      .tag rect { fill: #F1F1F1; } .tag text { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 11px; fill: #444; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="560" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Что работает в каждом бинарнике</text>
+
+  <g transform="translate(40,72)">
+    <rect width="160" height="56" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/><rect width="160" height="14" fill="#9A1FC0"/>
+    <text x="14" y="40" class="text">Мерчант, виджет</text>
+  </g>
+  <g transform="translate(220,72)">
+    <rect width="150" height="56" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/><rect width="150" height="14" fill="#2F6FE0"/>
+    <text x="14" y="40" class="text">Провайдер</text>
+  </g>
+  <g transform="translate(470,72)">
+    <rect width="260" height="56" fill="#FFFFFF" stroke="#1A1A1A" stroke-width="2"/><rect width="260" height="14" fill="#1A1A1A"/>
+    <text x="14" y="40" class="text">Админка</text>
+  </g>
+  <g transform="translate(820,72)">
+    <rect width="340" height="56" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/><rect width="340" height="14" fill="#F6821F"/>
+    <text x="14" y="40" class="mono" fill="#1A1A1A">trader-service, telegram-service</text>
+  </g>
+
+  <line x1="120" y1="128" x2="120" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="136" y="150" class="muted">HTTP</text>
+  <line x1="295" y1="128" x2="295" y2="162" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="311" y="150" class="muted">webhook</text>
+  <line x1="600" y1="128" x2="600" y2="162" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="616" y="150" class="muted">HTTP, JWT</text>
+  <line x1="990" y1="128" x2="990" y2="162" stroke="#F6821F" stroke-width="1.6" marker-end="url(#a-orange)"/>
+  <text x="1006" y="150" class="muted">NATS, CQRS</text>
+
+  <rect x="40" y="170" width="340" height="220" rx="6" class="card"/>
+  <text x="60" y="200" class="name">merchant-api</text>
+  <text x="360" y="200" class="muted" text-anchor="end">:8082</text>
+  <text x="60" y="232" class="mono" fill="#1A1A1A">/api/v1/deals, /terminal</text>
+  <text x="60" y="256" class="mono" fill="#1A1A1A">/api/v1/payment-widgets</text>
+  <text x="60" y="280" class="mono" fill="#1A1A1A">POST /webhooks/:provider_code</text>
+  <text x="60" y="312" class="text" fill="#1A1A1A">создаёт сделку синхронно</text>
+  <text x="60" y="334" class="text" fill="#1A1A1A">стартует PaymentWaitWorkflow</text>
+  <text x="60" y="366" class="mono" fill="#1A1A1A">q.merchant.get_terminal_auth</text>
+
+  <rect x="430" y="170" width="340" height="220" rx="6" class="card"/>
+  <text x="450" y="200" class="name">admin-api</text>
+  <text x="750" y="200" class="muted" text-anchor="end">:8081</text>
+  <text x="450" y="232" class="mono" fill="#1A1A1A">/api/v1, JWT + Casbin</text>
+  <text x="450" y="264" class="text" fill="#1A1A1A">сделки, споры, терминалы,</text>
+  <text x="450" y="286" class="text" fill="#1A1A1A">провайдеры, трейдеры, балансы</text>
+  <text x="450" y="308" class="text" fill="#1A1A1A">пауза TTL и повтор webhook</text>
+  <rect x="450" y="332" width="300" height="38" class="key"/>
+  <text x="464" y="356" class="text" fill="#C25E00">единственный накатывает миграции</text>
+
+  <rect x="820" y="170" width="340" height="220" rx="6" class="card"/>
+  <text x="840" y="200" class="name">worker</text>
+  <text x="1140" y="200" class="muted" text-anchor="end">без HTTP</text>
+  <text x="840" y="232" class="text" fill="#1A1A1A">Temporal, очередь</text>
+  <text x="966" y="232" class="mono" fill="#1A1A1A">payment-lifecycle</text>
+  <text x="840" y="264" class="mono" fill="#1A1A1A">Payments.Deal.GetStatus</text>
+  <text x="840" y="288" class="mono" fill="#1A1A1A">Payments.Deal.*ByTrader</text>
+  <text x="840" y="312" class="mono" fill="#1A1A1A">Payments.Dispute.TGRespond</text>
+  <text x="840" y="344" class="text" fill="#1A1A1A">пишет результаты доставки</text>
+  <text x="840" y="366" class="mono" fill="#1A1A1A">notifications.deal.result</text>
+
+  <rect x="40" y="420" width="1120" height="110" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="60" y="450" class="label">В каждом из трёх процессов, каждую порцию работы берёт один</text>
+  <rect x="60" y="466" width="250" height="48" class="plate"/>
+  <text x="72" y="486" class="text" fill="#1A1A1A">Просроченные сделки</text>
+  <text x="72" y="505" class="text" fill="#1A1A1A">раз в 30 с, под advisory lock</text>
+  <rect x="330" y="466" width="250" height="48" class="plate"/>
+  <text x="342" y="486" class="text" fill="#1A1A1A">Outbox в accounting</text>
+  <text x="342" y="505" class="text" fill="#1A1A1A">раз в 1 с, SKIP LOCKED</text>
+  <rect x="600" y="466" width="270" height="48" class="plate"/>
+  <text x="612" y="486" class="text" fill="#1A1A1A">Резервы под открытые споры</text>
+  <text x="612" y="505" class="mono" fill="#1A1A1A">BALANCE_EVENTS</text>
+  <rect x="890" y="466" width="250" height="48" class="plate"/>
+  <text x="902" y="486" class="text" fill="#1A1A1A">Обновление кэша сделки</text>
+  <text x="902" y="505" class="mono" fill="#1A1A1A">DEAL_EVENTS</text>
+</svg>

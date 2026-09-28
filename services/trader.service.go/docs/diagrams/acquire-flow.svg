@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+      .name  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 14px; font-weight: 700; fill: #1A1A1A; }
+      .step circle { fill: #fff; stroke: #2F6FE0; stroke-width: 1.8; }
+      .step text { font-size: 12px; font-weight: 700; fill: #1A1A1A; text-anchor: middle; dominant-baseline: central; }
+      .plate { fill: #E6EEFC; }
+      .key { fill: #FFF0D4; }
+    </style>
+  </defs>
+  <rect width="1200" height="620" fill="#FFFFFF"/>
+  <text x="40" y="44" class="title">Сделка на трейдера: от выдачи реквизита до его освобождения</text>
+
+  <g transform="translate(40,80)">
+    <rect width="150" height="150" fill="#F1F1F1" stroke="#1A1A1A" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#1A1A1A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="62" class="name">core</text>
+    <text x="16" y="84" class="muted">manual-адаптер</text>
+    <text x="16" y="100" class="muted">провайдера</text>
+  </g>
+  <g class="step" transform="translate(222,100)"><circle r="11"/><text>1</text></g>
+  <text x="242" y="105" class="mono" fill="#1A1A1A">Trader.Requisite.Acquire</text>
+  <text x="242" y="125" class="mono" fill="#1A1A1A">traderId: 7</text>
+  <text x="242" y="145" class="mono" fill="#1A1A1A">amount: "5000", RUB</text>
+  <text x="242" y="165" class="mono" fill="#1A1A1A">dealExpiresAt</text>
+  <line x1="242" y1="184" x2="462" y2="184" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="470" y1="214" x2="198" y2="214" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="242" y="236" class="mono" fill="#1A1A1A">value, holder, name</text>
+
+  <rect x="470" y="70" width="430" height="510" rx="6" fill="#FFFFFF" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="880" y="96" class="muted" text-anchor="end">trader-service</text>
+
+  <g class="step" transform="translate(496,104)"><circle r="11"/><text>2</text></g>
+  <text x="516" y="109" class="label">Занимаем свободный реквизит</text>
+  <rect x="490" y="122" width="390" height="52" class="plate"/>
+  <text x="502" y="144" class="mono" fill="#1A1A1A">pg_advisory_xact_lock(dealId, traderId)</text>
+  <text x="502" y="164" class="mono" fill="#1A1A1A">ACTIVE → BUSY, LRU, SKIP LOCKED</text>
+
+  <g class="step" transform="translate(496,214)"><circle r="11"/><text>3</text></g>
+  <text x="516" y="219" class="label">Отправляем карточку оператору</text>
+  <rect x="490" y="232" width="390" height="34" class="plate"/>
+  <text x="502" y="254" class="text" fill="#1A1A1A">в фоне: ответ core не ждёт Telegram</text>
+
+  <g class="step" transform="translate(496,344)"><circle r="11"/><text>5</text></g>
+  <text x="516" y="349" class="label">Проверяем, что сделка на его реквизите</text>
+  <rect x="490" y="362" width="390" height="34" class="plate"/>
+  <text x="502" y="384" class="mono" fill="#1A1A1A">current_deal_id = dealId</text>
+
+  <g class="step" transform="translate(496,454)"><circle r="11"/><text>6</text></g>
+  <text x="516" y="459" class="label">Освобождаем реквизит</text>
+  <rect x="490" y="472" width="390" height="78" class="key"/>
+  <text x="502" y="496" class="mono" fill="#C25E00">BUSY → ACTIVE</text>
+  <text x="502" y="518" class="mono" fill="#C25E00">current_deal_id = NULL</text>
+  <text x="502" y="540" class="text" fill="#C25E00">карточка правится на месте</text>
+
+  <g transform="translate(40,350)">
+    <rect width="150" height="200" fill="#F1F1F1" stroke="#1A1A1A" stroke-width="2.5"/>
+    <rect width="150" height="18" fill="#1A1A1A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <text x="16" y="62" class="name">core</text>
+    <text x="16" y="84" class="muted">процесс worker</text>
+  </g>
+  <line x1="470" y1="400" x2="198" y2="400" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="222" y="390" class="mono" fill="#1A1A1A">Payments.Deal.ConfirmByTrader</text>
+  <line x1="198" y1="500" x2="462" y2="500" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="222" y="490" class="mono" fill="#1A1A1A">deals.status_changed.*</text>
+  <text x="222" y="522" class="muted">status: COMPLETED</text>
+
+  <text x="1080" y="176" class="label" text-anchor="middle">Оператор трейдера</text>
+  <g transform="translate(1000,190)">
+    <rect width="160" height="110" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <rect x="16" y="36" width="128" height="10" fill="#FFFFFF"/><rect x="16" y="56" width="96" height="10" fill="#FFFFFF"/><rect x="16" y="76" width="112" height="10" fill="#FFFFFF"/>
+  </g>
+  <line x1="900" y1="249" x2="992" y2="249" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="912" y="240" class="text">карточка</text>
+  <path d="M1000 284 H960 V379 H888" fill="none" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="972" y="336" class="text" fill="#2F6FE0">«Оплачено»</text>
+
+  <g transform="translate(1000,440)">
+    <rect width="160" height="110" fill="#FCE4EC" stroke="#D0305A" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#D0305A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="80" cy="62" r="28" fill="#fff" stroke="#D0305A" stroke-width="2"/>
+    <circle cx="80" cy="54" r="9" fill="#D0305A"/><path d="M61 82 Q80 62 99 82" fill="#D0305A"/>
+  </g>
+  <text x="1080" y="574" class="label" text-anchor="middle">Плательщик</text>
+  <g class="step" transform="translate(1070,418)"><circle r="11"/><text>4</text></g>
+  <line x1="1110" y1="440" x2="1110" y2="308" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="1098" y="368" class="text" fill="#D0305A" text-anchor="end">перевод</text>
+  <text x="1098" y="386" class="text" fill="#D0305A" text-anchor="end">на реквизит</text>
+</svg>

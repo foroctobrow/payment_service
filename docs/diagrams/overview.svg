@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 70 1200 570" font-family="Inter, 'SF Pro Text', Helvetica, Arial, sans-serif">
+  <defs>
+    <marker id="a-ink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#1A1A1A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-blue" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#2F6FE0" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <marker id="a-pink" viewBox="0 0 12 12" refX="11" refY="6" markerWidth="12" markerHeight="12" orient="auto-start-reverse"><path d="M1 1 L11 6 L1 11" fill="none" stroke="#D0305A" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></marker>
+    <style>
+      .title { font-size: 20px; font-weight: 700; fill: #1A1A1A; }
+      .label { font-size: 15px; font-weight: 600; fill: #1A1A1A; }
+      .text  { font-size: 14px; }
+      .muted { font-size: 12px; fill: #6B6B6B; }
+      .mono  { font-family: 'JetBrains Mono', Menlo, monospace; font-size: 13px; }
+    </style>
+  </defs>
+  <rect width="1200" height="640" fill="#FFFFFF"/>
+  <text x="40" y="110" class="title">Кто участвует в сделке</text>
+
+  <g transform="translate(40,200)">
+    <rect width="170" height="120" fill="#F3DDF7" stroke="#9A1FC0" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#9A1FC0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="85" cy="68" r="30" fill="#fff" stroke="#9A1FC0" stroke-width="2"/>
+    <circle cx="85" cy="60" r="10" fill="#9A1FC0"/><path d="M65 88 Q85 68 105 88" fill="#9A1FC0"/>
+    <text x="85" y="146" class="label" text-anchor="middle">Мерчант</text>
+    <text x="85" y="164" class="muted" text-anchor="middle">(магазин, сервис)</text>
+  </g>
+
+  <rect x="400" y="150" width="400" height="250" rx="6" fill="#FFF6EA" stroke="#F6821F" stroke-width="2.5"/>
+  <text x="424" y="186" class="label">Платформа</text>
+  <rect x="424" y="206" width="352" height="46" fill="#FFFFFF" stroke="#F6821F" stroke-width="1"/>
+  <text x="440" y="235" class="text">Курс и комиссии</text>
+  <rect x="424" y="264" width="352" height="46" fill="#FFFFFF" stroke="#F6821F" stroke-width="1"/>
+  <text x="440" y="293" class="text">Роутинг: кто исполнит сделку</text>
+  <rect x="424" y="322" width="352" height="46" fill="#FFFFFF" stroke="#F6821F" stroke-width="1"/>
+  <text x="440" y="351" class="text">Леджер: резервы и зачисления</text>
+
+  <text x="222" y="240" class="mono" fill="#9A1FC0">POST /api/v1/deals</text>
+  <line x1="222" y1="252" x2="392" y2="252" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="400" y1="300" x2="220" y2="300" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="232" y="322" class="text" fill="#1A1A1A">webhook о статусе</text>
+
+  <g transform="translate(1000,120)">
+    <rect width="160" height="100" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <rect x="16" y="34" width="128" height="10" fill="#FFFFFF"/><rect x="16" y="52" width="96" height="10" fill="#FFFFFF"/><rect x="16" y="70" width="112" height="10" fill="#FFFFFF"/>
+    <text x="80" y="124" class="label" text-anchor="middle">Провайдер</text>
+  </g>
+  <g transform="translate(1000,300)">
+    <rect width="160" height="100" fill="#E6EEFC" stroke="#2F6FE0" stroke-width="2.5"/>
+    <rect width="160" height="18" fill="#2F6FE0"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="80" cy="58" r="24" fill="#fff" stroke="#2F6FE0" stroke-width="2"/>
+    <circle cx="80" cy="52" r="8" fill="#2F6FE0"/><path d="M64 74 Q80 58 96 74" fill="#2F6FE0"/>
+    <text x="80" y="124" class="label" text-anchor="middle">Трейдер</text>
+    <text x="80" y="142" class="muted" text-anchor="middle">(кабинет в Telegram)</text>
+  </g>
+
+  <text x="814" y="156" class="text" fill="#1A1A1A">запрос реквизита</text>
+  <line x1="800" y1="166" x2="992" y2="166" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="1000" y1="200" x2="808" y2="200" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="814" y="222" class="text" fill="#2F6FE0">реквизит, статус</text>
+
+  <text x="814" y="336" class="text" fill="#1A1A1A">карточка сделки</text>
+  <line x1="800" y1="346" x2="992" y2="346" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <line x1="1000" y1="380" x2="808" y2="380" stroke="#2F6FE0" stroke-width="1.6" marker-end="url(#a-blue)"/>
+  <text x="814" y="402" class="text" fill="#2F6FE0">подтверждение</text>
+
+  <line x1="600" y1="400" x2="600" y2="472" stroke="#1A1A1A" stroke-width="1.6" marker-end="url(#a-ink)"/>
+  <text x="614" y="442" class="text" fill="#1A1A1A">виджет с реквизитом</text>
+  <g transform="translate(515,480)">
+    <rect width="170" height="110" fill="#FCE4EC" stroke="#D0305A" stroke-width="2.5"/>
+    <rect width="170" height="18" fill="#D0305A"/>
+    <circle cx="12" cy="9" r="3" fill="#fff"/><circle cx="22" cy="9" r="3" fill="#fff"/><circle cx="32" cy="9" r="3" fill="#fff"/>
+    <circle cx="85" cy="64" r="28" fill="#fff" stroke="#D0305A" stroke-width="2"/>
+    <circle cx="85" cy="56" r="9" fill="#D0305A"/><path d="M66 84 Q85 64 104 84" fill="#D0305A"/>
+  </g>
+  <text x="600" y="616" class="label" text-anchor="middle">Плательщик</text>
+
+  <path d="M685 535 H1080 V458" fill="none" stroke="#D0305A" stroke-width="1.6" marker-end="url(#a-pink)"/>
+  <text x="712" y="524" class="text" fill="#D0305A">перевод на реквизит</text>
+  <text x="712" y="558" class="muted">деньги идут напрямую исполнителю</text>
+</svg>
